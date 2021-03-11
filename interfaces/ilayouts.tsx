@@ -1,5 +1,5 @@
 export interface ILayouts {
+  title?: string;
   noHeader?: boolean;
-  noSidebar?: boolean;
   menuSelected?: string;
 }
