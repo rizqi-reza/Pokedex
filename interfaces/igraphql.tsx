@@ -7,7 +7,7 @@ export interface IGraphQL {
   message: string;
 }
 
-interface IParam {
+export interface IParam {
   limit: number;
   offset: number;
 }

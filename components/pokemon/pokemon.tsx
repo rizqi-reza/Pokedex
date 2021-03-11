@@ -11,11 +11,14 @@ import {
 import { usePalette } from 'react-palette';
 import { capitalize } from 'lodash';
 import { backgroundImage } from '@utils/constant';
+import { Skeleton } from 'styles/skeleton.styles';
 
 const Pokemon: React.FC<IPokemon> = ({ id, name, image }) => {
-  const { data: color } = usePalette(image);
+  const { data: color, loading } = usePalette(image);
 
-  return (
+  return loading ? (
+    <Skeleton marginTop={8} height={100} />
+  ) : (
     <Card background={color.lightVibrant}>
       <CardHeader>
         <CardTitle>{capitalize(name)}</CardTitle>

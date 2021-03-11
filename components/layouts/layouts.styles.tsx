@@ -39,7 +39,7 @@ export const MainContent = styled.main<IContent>(({ noHeader }) => ({
   width: '100%',
   maxWidth: 480,
   backgroundColor: '#fff',
-  padding: 16,
+  padding: 8,
   boxSizing: 'border-box',
   minHeight: 'calc(100vh - 60px)',
 }));

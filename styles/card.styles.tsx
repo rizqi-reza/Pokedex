@@ -3,11 +3,10 @@ import { ICard } from '@interfaces/icard';
 
 export const Card = styled.div<ICard>(({ background }) => ({
   position: 'relative',
-  minHeight: 80,
+  height: 100,
   boxShadow: '0 4px 16px 0 rgba(0,0,0,0.1)',
   borderRadius: 12,
   padding: 12,
-  margin: 4,
   zIndex: 99,
   overflow: 'hidden',
   backgroundColor: background ? background : '#fff',
@@ -29,8 +28,12 @@ export const CardTitle = styled.h1(() => ({
 }));
 
 export const CardSubTitle = styled.label(() => ({
+  height: 'fit-content',
   fontSize: 12,
-  margin: 0,
+  margin: '0 0 0 8px',
+  backgroundColor: 'rgba(0, 0, 0, 0.2)',
+  padding: '4px 8px',
+  borderRadius: 16,
 }));
 
 export const CardImage = styled.img(() => ({

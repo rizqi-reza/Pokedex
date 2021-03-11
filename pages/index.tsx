@@ -6,7 +6,6 @@ import PokemonList from '@components/pokemonList';
 const HomePage: NextPage = () => {
   return (
     <Layouts title="Pokedex" noHeader={false}>
-      Welcome to Pokedex homepage!
       <PokemonList owned={false} />
     </Layouts>
   );
