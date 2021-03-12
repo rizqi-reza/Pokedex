@@ -15,18 +15,18 @@ export const PokeBall = styled.span<IPokeBall>(({ background, width, height, isA
     : 'invert(27%) sepia(51%) saturate(100%) hue-rotate(346deg) brightness(100%) contrast(45%)',
 }));
 
-export const PokeInfo = styled.div(() => ({
+export const PokeInfo = styled.div({
   width: '100%',
-}));
+});
 
-export const PokeTitle = styled.div(() => ({
+export const PokeTitle = styled.div({
   display: 'flex',
   justifyContent: 'space-between',
   width: '100%',
   marginBottom: -12,
-}));
+});
 
-export const PokeType = styled.span(() => ({
+export const PokeType = styled.span({
   maxWidth: 120,
   span: {
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
@@ -35,4 +35,16 @@ export const PokeType = styled.span(() => ({
     fontSize: 12,
     marginRight: 4,
   },
-}));
+});
+
+export const PokeAbility = styled.ul({
+  paddingLeft: 16,
+  li: {
+    marginBottom: 8,
+  },
+});
+
+export const PokeSprites = styled.div({
+  textAlign: 'center',
+  fontWeight: 600,
+});

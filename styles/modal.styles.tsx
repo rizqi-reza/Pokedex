@@ -28,7 +28,7 @@ export const ModalWrapper = styled.div<IModalWrapper>(({ show }) => ({
   left: 0,
   zIndex: 9999,
   outline: 0,
-  overflow: 'auto',
+  overflow: undefined,
   opacity: show ? 1 : 0,
   visibility: show ? 'visible' : 'hidden',
   transform: show ? 'translate(0)' : 'translateY(100%)',
@@ -46,7 +46,7 @@ export const ModalWrapper = styled.div<IModalWrapper>(({ show }) => ({
 export const ModalStyled = styled.div<IModalWrapper>(({ show }) => ({
   width: '100%',
   maxWidth: 480,
-  minHeight: '60vh',
+  height: '65%',
   position: 'relative',
   margin: '32px auto 0',
   background: '#fff',
@@ -82,8 +82,7 @@ export const ModalTitle = styled.div({
 });
 
 export const ModalInfo = styled.div({
-  //   marginTop: 30,
-  //   paddingTop: 30,
+  color: '#fff',
 });
 
 export const ModalClose = styled.div({
@@ -96,7 +95,8 @@ export const ModalClose = styled.div({
 });
 
 export const Body = styled.div<IModalBody>(({ withOutFooter, maxHeight, fullHeight }) => ({
-  padding: 16,
+  padding: 8,
+  paddingTop: 32,
   fontSize: 14,
   wordBreak: 'break-word',
   maxHeight: maxHeight
@@ -122,9 +122,10 @@ export const Footer = styled.div({
 
 export const ModalHeaderImage = styled.div({
   display: 'block',
-  position: 'inherit',
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  width: '50%',
-  top: '-18vh',
+  position: 'absolute',
+  left: 0,
+  right: 0,
+  textAlign: 'center',
+  top: '-34%',
+  objectFit: 'cover',
 });

@@ -13,6 +13,7 @@ import { usePalette } from 'react-palette';
 import Modal from '@components/modal';
 import { PokeInfo, PokeTitle, PokeType } from '@styles/pokemon.styles';
 import { getFormattedId } from '@utils/string';
+import PokemonDetails from '@components/pokemonDetails';
 
 const PokemonList: React.FC<{ owned: boolean }> = ({ owned }) => {
   const [variables, setVariables] = useState<IParam>(defaultVariables);
@@ -74,6 +75,22 @@ const PokemonList: React.FC<{ owned: boolean }> = ({ owned }) => {
     setSelectedPokemon(pokemon);
   };
 
+  const skeletonDetails = () => (
+    <>
+      <Skeleton marginTop={8} />
+      <Grid>
+        <Skeleton marginTop={8} />
+        <Skeleton marginTop={8} />
+        <Skeleton marginTop={8} />
+        <Skeleton marginTop={8} />
+        <Skeleton marginTop={8} />
+        <Skeleton marginTop={8} />
+        <Skeleton marginTop={8} />
+        <Skeleton marginTop={8} />
+      </Grid>
+    </>
+  );
+
   return (
     <>
       <Grid>
@@ -114,8 +131,8 @@ const PokemonList: React.FC<{ owned: boolean }> = ({ owned }) => {
             />
           </Modal.Image>
         )}
-        <Modal.Body>
-          {loadingDetail ? <Skeleton marginTop={8}>Loading...</Skeleton> : <>Showed</>}
+        <Modal.Body maxHeight>
+          {loadingDetail ? skeletonDetails() : <PokemonDetails {...selectedPokemon} />}
         </Modal.Body>
       </Modal>
     </>

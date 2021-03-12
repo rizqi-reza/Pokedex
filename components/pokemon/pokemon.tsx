@@ -5,8 +5,8 @@ import {
   CardBackground,
   CardHeader,
   CardImage,
-  CardSubTitle,
-  CardTitle,
+  CardSubBadge,
+  CardBadge,
 } from '@styles/card.styles';
 import { usePalette } from 'react-palette';
 import { capitalize } from 'lodash';
@@ -26,8 +26,8 @@ const Pokemon: React.FC<IPokemon> = ({ id, name, image, onClick }) => {
   ) : (
     <Card background={color.lightVibrant} onClick={handleClickPokemon}>
       <CardHeader>
-        <CardTitle>{capitalize(name)}</CardTitle>
-        <CardSubTitle>{getFormattedId(id)}</CardSubTitle>
+        <CardBadge>{capitalize(name)}</CardBadge>
+        <CardSubBadge>{getFormattedId(id)}</CardSubBadge>
       </CardHeader>
 
       <CardImage src={image} alt={name} />

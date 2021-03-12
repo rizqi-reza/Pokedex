@@ -30,6 +30,37 @@ export const GET_POKEMON = gql`
           name
         }
       }
+      abilities {
+        ability {
+          name
+        }
+        is_hidden
+      }
+      sprites {
+        back_default
+        front_default
+      }
+      stats {
+        base_stat
+        effort
+        stat {
+          name
+        }
+      }
+      moves {
+        move {
+          name
+        }
+        version_group_details {
+          level_learned_at
+          move_learn_method {
+            name
+          }
+          version_group {
+            name
+          }
+        }
+      }
     }
   }
 `;
