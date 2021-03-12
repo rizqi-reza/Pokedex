@@ -20,6 +20,7 @@
     "baseUrl": ".",
     "paths": {
       "@pages/*": ["./pages/*"],
+      "@styles/*": ["./styles/*"],
       "@components/*": ["./components/*"],
       "@utils/*": ["./utils/*"],
       "@interfaces/*": ["./interfaces/*"]

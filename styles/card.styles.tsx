@@ -4,7 +4,7 @@ import { ICard } from '@interfaces/icard';
 export const Card = styled.div<ICard>(({ background }) => ({
   position: 'relative',
   height: 100,
-  boxShadow: '0 4px 16px 0 rgba(0,0,0,0.1)',
+  boxShadow: '0 8px 12px 0 rgba(0,0,0,0.3)',
   borderRadius: 12,
   padding: 12,
   zIndex: 99,

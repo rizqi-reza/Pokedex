@@ -17,3 +17,19 @@ export const GET_POKEMON_LIST = gql`
     }
   }
 `;
+
+export const GET_POKEMON = gql`
+  query getPokemon($name: String!) {
+    pokemon(name: $name) {
+      status
+      message
+      weight
+      height
+      types {
+        type {
+          name
+        }
+      }
+    }
+  }
+`;

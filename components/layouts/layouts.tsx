@@ -8,7 +8,7 @@ import {
   Footer,
   BackgroundContent,
 } from '@components/layouts/layouts.styles';
-import { backgroundImage } from '@utils/constant';
+import { pokeballImage } from '@utils/constant';
 
 const Layouts: React.FC<ILayouts> = ({ title, noHeader, menuSelected, children }) => {
   return (
@@ -17,7 +17,7 @@ const Layouts: React.FC<ILayouts> = ({ title, noHeader, menuSelected, children }
         <Wrapper>{title}</Wrapper>
       </Header>
       <MainContent noHeader={noHeader}>
-        <BackgroundContent src={backgroundImage} alt="page_background" />
+        <BackgroundContent src={pokeballImage} alt="page_background" />
         {children}
       </MainContent>
       <Wrapper>

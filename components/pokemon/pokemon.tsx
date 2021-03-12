@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IPokemon } from '@interfaces/ipokemon';
 import {
   Card,
@@ -7,26 +7,31 @@ import {
   CardImage,
   CardSubTitle,
   CardTitle,
-} from 'styles/card.styles';
+} from '@styles/card.styles';
 import { usePalette } from 'react-palette';
 import { capitalize } from 'lodash';
-import { backgroundImage } from '@utils/constant';
-import { Skeleton } from 'styles/skeleton.styles';
+import { pokeballImage } from '@utils/constant';
+import { Skeleton } from '@styles/skeleton.styles';
+import { getFormattedId } from '@utils/string';
 
-const Pokemon: React.FC<IPokemon> = ({ id, name, image }) => {
+const Pokemon: React.FC<IPokemon> = ({ id, name, image, onClick }) => {
   const { data: color, loading } = usePalette(image);
+
+  const handleClickPokemon = () => {
+    onClick && onClick(name);
+  };
 
   return loading ? (
     <Skeleton marginTop={8} height={100} />
   ) : (
-    <Card background={color.lightVibrant}>
+    <Card background={color.lightVibrant} onClick={handleClickPokemon}>
       <CardHeader>
         <CardTitle>{capitalize(name)}</CardTitle>
-        <CardSubTitle>#{id}</CardSubTitle>
+        <CardSubTitle>{getFormattedId(id)}</CardSubTitle>
       </CardHeader>
 
       <CardImage src={image} alt={name} />
-      <CardBackground src={backgroundImage} alt="card_background" />
+      <CardBackground src={pokeballImage} alt="card_background" />
     </Card>
   );
 };
