@@ -10,7 +10,7 @@ import {
 } from '@components/layouts/layouts.styles';
 import { pokeballImage } from '@utils/constant';
 
-const Layouts: React.FC<ILayouts> = ({ title, noHeader, menuSelected, children }) => {
+const Layouts: React.FC<ILayouts> = ({ title, noHeader, children }) => {
   return (
     <LayoutStyle>
       <Header show={!noHeader}>

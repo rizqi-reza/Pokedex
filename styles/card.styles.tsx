@@ -27,6 +27,7 @@ export const CardBadge = styled.h1({
   backgroundColor: 'rgba(0, 0, 0, 0.2)',
   padding: '4px 8px',
   borderRadius: 16,
+  wordBreak: 'break-word',
 });
 
 export const CardSubBadge = styled.label({

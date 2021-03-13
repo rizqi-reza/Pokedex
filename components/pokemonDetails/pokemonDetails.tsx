@@ -14,7 +14,7 @@ const PokemonDetails: React.FC<IPokemon> = ({
   onClick,
 }) => {
   return (
-    <Tabs withBorder>
+    <Tabs maxHeight="49vh" withBorder>
       <Tabs.Item title="About">
         <About height={height} weight={weight} abilities={abilities} sprites={sprites} />
       </Tabs.Item>

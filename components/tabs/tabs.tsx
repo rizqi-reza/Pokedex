@@ -17,6 +17,9 @@ const TabsItem: React.FC = ({ children }) => {
 const Tabs: React.FC<ITabs> & ISubTabs = ({
   defaultActive = 0,
   withBorder,
+  maxHeight,
+  fixedHeader,
+  noPadding,
   onChange,
   children,
 }) => {
@@ -38,7 +41,7 @@ const Tabs: React.FC<ITabs> & ISubTabs = ({
 
   return (
     <TabsStyled>
-      <TabsList>
+      <TabsList fixedHeader={fixedHeader}>
         {React.Children.map(children, (item: any, index) => {
           return (
             <TitleWrapper key={index} onClick={() => handleChange(index)}>
@@ -48,7 +51,9 @@ const Tabs: React.FC<ITabs> & ISubTabs = ({
           );
         })}
       </TabsList>
-      <Content withBorder={withBorder}>{contentRender()}</Content>
+      <Content withBorder={withBorder} maxHeight={maxHeight} noPadding={noPadding}>
+        {contentRender()}
+      </Content>
     </TabsStyled>
   );
 };

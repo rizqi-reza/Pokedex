@@ -36,3 +36,14 @@ export interface IPokeSprites {
   back_default: string;
   front_default: string;
 }
+
+export interface IPokeBall {
+  background?: string;
+  width?: number;
+  height?: number;
+  isActive: boolean;
+}
+
+export interface IPokeAction {
+  variant?: 'default' | 'catch' | 'release';
+}

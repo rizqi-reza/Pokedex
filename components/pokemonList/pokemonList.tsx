@@ -11,7 +11,7 @@ import { Skeleton } from '@styles/skeleton.styles';
 import Image from 'next/image';
 import { usePalette } from 'react-palette';
 import Modal from '@components/modal';
-import { PokeInfo, PokeTitle, PokeType } from '@styles/pokemon.styles';
+import { PokeAction, PokeInfo, PokeTitle, PokeType, PokeWrapper } from '@styles/pokemon.styles';
 import { getFormattedId } from '@utils/string';
 import PokemonDetails from '@components/pokemonDetails';
 
@@ -60,7 +60,7 @@ const PokemonList: React.FC<{ owned: boolean }> = ({ owned }) => {
       (document.documentElement && document.documentElement.scrollHeight) ||
       document.body.scrollHeight;
     const clientHeight = document.documentElement.clientHeight || window.innerHeight;
-    const scrolledToBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight - 20;
+    const scrolledToBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight - 50;
     if (scrolledToBottom) {
       setVariables({ ...variables, offset: nextOffset });
     }
@@ -92,7 +92,7 @@ const PokemonList: React.FC<{ owned: boolean }> = ({ owned }) => {
   );
 
   return (
-    <>
+    <PokeWrapper>
       <Grid>
         {pokemons?.map((pokemon: IPokemon, index: number) => (
           <Pokemon {...pokemon} key={index} onClick={handleOpenDetail} />
@@ -131,11 +131,12 @@ const PokemonList: React.FC<{ owned: boolean }> = ({ owned }) => {
             />
           </Modal.Image>
         )}
-        <Modal.Body maxHeight>
+        <Modal.Body maxHeight fullHeight>
           {loadingDetail ? skeletonDetails() : <PokemonDetails {...selectedPokemon} />}
         </Modal.Body>
+        <PokeAction variant="catch">{pokeBall(true)}</PokeAction>
       </Modal>
-    </>
+    </PokeWrapper>
   );
 };
 

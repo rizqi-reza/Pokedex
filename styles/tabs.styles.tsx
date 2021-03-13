@@ -9,7 +9,14 @@ export const TabsStyled = styled.div({
   height: '100%',
 });
 
-export const TabsList = styled.div({
+export const TabsList = styled.div<{ fixedHeader: boolean }>(({ fixedHeader }) => ({
+  position: fixedHeader ? 'fixed' : 'relative',
+  top: fixedHeader ? 0 : undefined,
+  left: fixedHeader ? 0 : undefined,
+  right: fixedHeader ? 0 : undefined,
+  backgroundColor: fixedHeader ? '#fff' : undefined,
+  boxShadow: fixedHeader ? '0 4px 16px 0 rgba(0,0,0,0.1)' : undefined,
+  zIndex: 999,
   display: 'flex',
   justifyContent: 'center',
   maxWidth: '100%',
@@ -19,7 +26,7 @@ export const TabsList = styled.div({
   '& > div:last-of-type': {
     marginRight: 0,
   },
-});
+}));
 
 export const TitleWrapper = styled.div({
   marginRight: 8,
@@ -53,13 +60,15 @@ export const Bar = styled.div<ITabs>(({ selected }) => ({
   borderTopRightRadius: 4,
 }));
 
-export const Content = styled.div<{ withBorder: boolean }>(({ withBorder }) => ({
-  padding: '0 16px',
-  borderTop: withBorder ? `1px solid #e0e0e0` : 'none',
-  fontSize: 14,
-  overflowY: 'scroll',
-  height: '24rem',
-}));
+export const Content = styled.div<{ withBorder: boolean; maxHeight: string; noPadding: boolean }>(
+  ({ withBorder, maxHeight, noPadding }) => ({
+    padding: noPadding ? 0 : '0 16px',
+    borderTop: withBorder ? `1px solid #e0e0e0` : 'none',
+    fontSize: 14,
+    overflowY: 'scroll',
+    maxHeight,
+  }),
+);
 
 export const TabsItemStyled = styled.div({
   position: 'relative',
