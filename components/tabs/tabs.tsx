@@ -20,6 +20,7 @@ const Tabs: React.FC<ITabs> & ISubTabs = ({
   maxHeight,
   fixedHeader,
   noPadding,
+  variant,
   onChange,
   children,
 }) => {
@@ -45,8 +46,10 @@ const Tabs: React.FC<ITabs> & ISubTabs = ({
         {React.Children.map(children, (item: any, index) => {
           return (
             <TitleWrapper key={index} onClick={() => handleChange(index)}>
-              <Title selected={index == selectedStatus}>{item.props.title}</Title>
-              <Bar selected={index == selectedStatus} />
+              <Title selected={index == selectedStatus} variant={variant}>
+                {item.props.title}
+              </Title>
+              {variant === 'default' && <Bar selected={index == selectedStatus} />}
             </TitleWrapper>
           );
         })}

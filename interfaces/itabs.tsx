@@ -4,6 +4,7 @@ export interface ITabs extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onCha
   maxHeight?: string;
   fixedHeader?: boolean;
   noPadding?: boolean;
+  variant?: 'default' | 'badge';
   onChange?: (index: number) => void;
 }
 

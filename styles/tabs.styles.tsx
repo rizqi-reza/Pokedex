@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 interface ITabs {
   selected?: boolean;
+  variant?: 'default' | 'badge';
 }
 
 export const TabsStyled = styled.div({
@@ -33,19 +34,23 @@ export const TitleWrapper = styled.div({
   position: 'relative',
 });
 
-export const Title = styled.div<ITabs>(({ selected }) => ({
+export const Title = styled.div<ITabs>(({ selected, variant }) => ({
   fontWeight: 600,
   textTransform: 'uppercase',
   fontSize: 12,
-  padding: '16px',
-  color: selected ? '#2196f3' : '#000',
+  padding: variant === 'badge' ? 8 : 16,
+  margin: variant === 'badge' ? '8px 0' : 0,
+  color: selected ? (variant === 'badge' ? '#fff' : '#2196f3') : '#000',
+  backgroundColor: variant === 'badge' && selected ? '#2196f3' : undefined,
+  boxShadow: variant === 'badge' ? '0 4px 16px 0 rgba(0,0,0,0.1)' : undefined,
   cursor: 'pointer',
+  borderRadius: variant === 'badge' ? 24 : 0,
   position: 'relative',
   '& > span:first-of-type': {
     marginRight: 8,
   },
   '&:hover': {
-    color: '#2196f3',
+    color: variant === 'badge' ? '#fff' : '#2196f3',
   },
 }));
 

@@ -24,7 +24,7 @@ const Pokemon: React.FC<IPokemon> = ({ id, name, image, onClick }) => {
   return loading ? (
     <Skeleton marginTop={8} height={100} />
   ) : (
-    <Card background={color.lightVibrant} onClick={handleClickPokemon}>
+    <Card background={color.lightVibrant} onClick={handleClickPokemon} height={100}>
       <CardHeader>
         <CardBadge>{capitalize(name)}</CardBadge>
         <CardSubBadge>{getFormattedId(id)}</CardSubBadge>

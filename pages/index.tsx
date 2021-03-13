@@ -12,7 +12,7 @@ const HomePage: NextPage = () => {
         <title>Pokedex by Rizqi Reza</title>
       </Head>
 
-      <Tabs fixedHeader noPadding>
+      <Tabs fixedHeader noPadding variant="badge">
         <Tabs.Item title="Pokedex">
           <PokemonList owned={false} />
         </Tabs.Item>
