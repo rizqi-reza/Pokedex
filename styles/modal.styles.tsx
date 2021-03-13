@@ -7,7 +7,7 @@ export const Mask = styled.div<IModalWrapper>(({ show, backgroundColor }) => ({
   left: 0,
   right: 0,
   bottom: 0,
-  backgroundColor: backgroundColor ? backgroundColor : 'rgba(0,0,0,0.7)',
+  backgroundColor: backgroundColor ? backgroundColor : 'rgba(0,0,0,0.8)',
   visibility: show ? 'visible' : 'hidden',
   transition: 'all 0.3s',
   zIndex: 999,
@@ -92,6 +92,7 @@ export const ModalClose = styled.div({
   fontWeight: 800,
   padding: '0 10px 4px',
   backgroundColor: 'rgba(0, 0, 0, 0.2)',
+  textShadow: 'none',
   borderRadius: '50%',
 });
 

@@ -42,10 +42,10 @@ const Modal: React.FC<IModal> & ISubModal = ({
   ...props
 }) => {
   const node = useRef<HTMLDivElement>(null);
-  const isDrawer = as === 'drawer';
+  const isSheets = as === 'sheets';
 
   const handleClick = (e: any) => {
-    if (!isDrawer) {
+    if (!isSheets) {
       !node?.current?.contains(e.target) && handleClose();
     }
   };
@@ -67,12 +67,12 @@ const Modal: React.FC<IModal> & ISubModal = ({
     };
   }, [show]);
 
-  return isDrawer ? (
+  return isSheets ? (
     <>
       <Mask show={show} backgroundColor={color}>
-        <Image src={pokeballImage} alt="drawer_header_background" width={300} height={300} />
+        <Image src={pokeballImage} alt="sheets_header_background" width={300} height={300} />
       </Mask>
-      {isDrawer && (
+      {isSheets && (
         <>
           <ModalHeader show={show} variant="light">
             <ModalTitle>
@@ -85,7 +85,7 @@ const Modal: React.FC<IModal> & ISubModal = ({
       )}
       <ModalWrapper show={show}>
         <ModalStyled show={show} ref={node} {...props}>
-          {!isDrawer && (
+          {!isSheets && (
             <ModalHeader>
               <ModalTitle>{title}</ModalTitle>
               <ModalClose onClick={handleClose}>&times;</ModalClose>

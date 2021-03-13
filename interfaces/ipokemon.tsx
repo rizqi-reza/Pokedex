@@ -1,3 +1,8 @@
+export interface IPokeBase {
+  url?: string;
+  name?: string;
+}
+
 export interface IPokemon {
   id: number;
   name: string;
@@ -6,9 +11,16 @@ export interface IPokemon {
   weight: number;
   height: number;
   abilities: IPokeAbilities[];
+  species: IPokeBase;
   sprites: IPokeSprites;
   color?: string;
-  onClick: (name: string) => void;
+  onClick?: (name: string) => void;
+}
+
+export interface IPokemonDetail {
+  pokemon: IPokemon;
+  showDetail: boolean;
+  onClose: () => void;
 }
 
 export interface IPokeType {

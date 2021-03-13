@@ -25,6 +25,10 @@ export const GET_POKEMON = gql`
       message
       weight
       height
+      species {
+        url
+        name
+      }
       types {
         type {
           name

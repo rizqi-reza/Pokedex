@@ -39,7 +39,7 @@ export const Title = styled.div<ITabs>(({ selected, variant }) => ({
   textTransform: 'uppercase',
   fontSize: 12,
   padding: variant === 'badge' ? 8 : 16,
-  margin: variant === 'badge' ? '8px 0' : 0,
+  margin: variant === 'badge' ? '16px 0' : 0,
   color: selected ? (variant === 'badge' ? '#fff' : '#2196f3') : '#000',
   backgroundColor: variant === 'badge' && selected ? '#2196f3' : undefined,
   boxShadow: variant === 'badge' ? '0 4px 16px 0 rgba(0,0,0,0.1)' : undefined,

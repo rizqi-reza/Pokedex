@@ -1,19 +1,15 @@
 import { useQuery } from '@apollo/client';
 import Pokemon from '@components/pokemon';
 import { IParam } from '@interfaces/igraphql';
-import { IPokemon, IPokeType } from '@interfaces/ipokemon';
-import { defaultVariables, pokeBall } from '@utils/constant';
-import { GET_POKEMON, GET_POKEMON_LIST } from '@utils/graphqlQuery';
-import { capitalize, isEmpty } from 'lodash';
+import { IPokemon } from '@interfaces/ipokemon';
+import { defaultVariables } from '@utils/constant';
+import { GET_POKEMON_LIST } from '@utils/graphqlQuery';
 import React, { useEffect, useState } from 'react';
 import { Grid } from '@styles/grid.styles';
-import { Skeleton } from '@styles/skeleton.styles';
-import Image from 'next/image';
 import { usePalette } from 'react-palette';
-import Modal from '@components/modal';
-import { PokeAction, PokeInfo, PokeTitle, PokeType, PokeWrapper } from '@styles/pokemon.styles';
-import { getFormattedId } from '@utils/string';
+import { PokeWrapper } from '@styles/pokemon.styles';
 import PokemonDetails from '@components/pokemonDetails';
+import { Skeleton } from '@styles/skeleton.styles';
 
 const PokemonList: React.FC<{ owned: boolean }> = ({ owned }) => {
   const [variables, setVariables] = useState<IParam>(defaultVariables);
@@ -34,15 +30,6 @@ const PokemonList: React.FC<{ owned: boolean }> = ({ owned }) => {
       setPokemons(pokeData);
       setTotalData(list?.count);
       setNextOffset(list?.nextOffset);
-    },
-  });
-
-  const { loading: loadingDetail, error: errorDetail } = useQuery(GET_POKEMON, {
-    skip: !selectedPokemon,
-    variables: { name: selectedPokemon?.name },
-    onCompleted: (data) => {
-      const pokeData = data?.pokemon;
-      setSelectedPokemon({ ...selectedPokemon, ...pokeData });
     },
   });
 
@@ -75,68 +62,23 @@ const PokemonList: React.FC<{ owned: boolean }> = ({ owned }) => {
     setSelectedPokemon(pokemon);
   };
 
-  const skeletonDetails = () => (
-    <>
-      <Skeleton marginTop={8} />
-      <Grid>
-        <Skeleton marginTop={8} />
-        <Skeleton marginTop={8} />
-        <Skeleton marginTop={8} />
-        <Skeleton marginTop={8} />
-        <Skeleton marginTop={8} />
-        <Skeleton marginTop={8} />
-        <Skeleton marginTop={8} />
-        <Skeleton marginTop={8} />
-      </Grid>
-    </>
-  );
-
   return (
-    <PokeWrapper>
-      <Grid>
-        {pokemons?.map((pokemon: IPokemon, index: number) => (
-          <Pokemon {...pokemon} key={index} onClick={handleOpenDetail} />
-        ))}
-      </Grid>
-      {canLoadMore && <p style={{ textAlign: 'center' }}>Scroll to load more</p>}
-      {loading && <Skeleton marginTop={8}>Loading...</Skeleton>}
-
-      <Modal
-        show={!isEmpty(selectedPokemon)}
+    <>
+      <PokeWrapper>
+        <Grid>
+          {pokemons?.map((pokemon: IPokemon, index: number) => (
+            <Pokemon {...pokemon} key={index} onClick={handleOpenDetail} />
+          ))}
+        </Grid>
+        {canLoadMore && <p style={{ textAlign: 'center' }}>Scroll to load more</p>}
+        {loading && <Skeleton marginTop={8}>Loading...</Skeleton>}
+      </PokeWrapper>
+      <PokemonDetails
+        pokemon={selectedPokemon}
+        showDetail={Boolean(selectedPokemon)}
         onClose={handleCloseDetail}
-        title={pokeBall()}
-        info={
-          <PokeInfo>
-            <PokeTitle>
-              <h2>{capitalize(selectedPokemon?.name)}</h2>
-              <h3>{getFormattedId(selectedPokemon?.id)}</h3>
-            </PokeTitle>
-            <PokeType>
-              {selectedPokemon?.types?.map((type: IPokeType) => (
-                <span>{capitalize(type.type.name)}</span>
-              ))}
-            </PokeType>
-          </PokeInfo>
-        }
-        color={pokemonColor.lightMuted}
-        as="drawer"
-      >
-        {selectedPokemon && (
-          <Modal.Image>
-            <Image
-              src={selectedPokemon.image}
-              alt={selectedPokemon.name}
-              width={220}
-              height={220}
-            />
-          </Modal.Image>
-        )}
-        <Modal.Body maxHeight fullHeight>
-          {loadingDetail ? skeletonDetails() : <PokemonDetails {...selectedPokemon} />}
-        </Modal.Body>
-        <PokeAction variant="catch">{pokeBall(true)}</PokeAction>
-      </Modal>
-    </PokeWrapper>
+      />
+    </>
   );
 };
 

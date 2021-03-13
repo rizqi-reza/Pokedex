@@ -24,8 +24,8 @@ const About: React.FC<IPokeAbout> = ({ height, weight, abilities, sprites }) => 
 
       <h3>Ability</h3>
       <PokeAbility>
-        {abilities?.map((ability: IPokeAbilities) => (
-          <li>
+        {abilities?.map((ability: IPokeAbilities, index: number) => (
+          <li key={index}>
             {capitalize(ability?.ability.name)} {ability?.is_hidden && '(Hidden Ability)'}
           </li>
         ))}

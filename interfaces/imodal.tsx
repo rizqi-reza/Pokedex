@@ -2,7 +2,7 @@ export interface IModal extends React.HTMLAttributes<HTMLDivElement> {
   show: boolean;
   title?: any;
   info?: any;
-  as?: 'modal' | 'drawer';
+  as?: 'modal' | 'sheets';
   onClose: () => void;
 }
 
