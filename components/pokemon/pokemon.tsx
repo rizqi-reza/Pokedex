@@ -9,10 +9,9 @@ import {
   CardBadge,
 } from '@styles/card.styles';
 import { usePalette } from 'react-palette';
-import { capitalize } from 'lodash';
 import { pokeballImage } from '@utils/constant';
 import { Skeleton } from '@styles/skeleton.styles';
-import { getFormattedId } from '@utils/string';
+import { formatText, getFormattedId } from '@utils/string';
 
 const Pokemon: React.FC<IPokemon> = ({ id, name, image, onClick }) => {
   const { data: color, loading } = usePalette(image);
@@ -26,7 +25,7 @@ const Pokemon: React.FC<IPokemon> = ({ id, name, image, onClick }) => {
   ) : (
     <Card background={color.lightVibrant} onClick={handleClickPokemon} height={100}>
       <CardHeader>
-        <CardBadge>{capitalize(name)}</CardBadge>
+        <CardBadge>{formatText(name)}</CardBadge>
         <CardSubBadge>{getFormattedId(id)}</CardSubBadge>
       </CardHeader>
 

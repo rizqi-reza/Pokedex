@@ -2,9 +2,10 @@ import { IPokeBase } from './ipokemon';
 
 export interface ISpecies {
   id: number;
+  base_happiness: number;
   capture_rate: number;
   color: IPokeBase;
-  egg_groups: IPokeBase;
+  egg_groups: IPokeBase[];
   evolution_chain: IPokeBase;
   flavor_text_entries: IFlavorTextEntries[];
   genera: IGenera[];
@@ -22,7 +23,7 @@ export interface IGenera {
 }
 
 export interface IFlavorTextEntries {
-  genuflavor_texts: string;
+  flavor_text: string;
   language: IPokeBase;
   version: IPokeBase;
 }

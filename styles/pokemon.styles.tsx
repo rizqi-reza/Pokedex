@@ -27,9 +27,7 @@ export const PokeTitle = styled.div({
   display: 'flex',
   justifyContent: 'space-between',
   width: '100%',
-  'h2, h3': {
-    textShadow: '0px 2px 16px rgba(0,0,0,0.4)',
-  },
+  textShadow: '0px 2px 16px rgba(0,0,0,0.4)',
 });
 
 export const PokeType = styled.span({

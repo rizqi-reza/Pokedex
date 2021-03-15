@@ -69,7 +69,8 @@ const Modal: React.FC<IModal> & ISubModal = ({
 
   return isSheets ? (
     <>
-      <Mask show={show} backgroundColor={color}>
+      <Mask show={show} backgroundColor={color} />
+      <Mask show={show}>
         <Image src={pokeballImage} alt="sheets_header_background" width={300} height={300} />
       </Mask>
       {isSheets && (

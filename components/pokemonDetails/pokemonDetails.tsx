@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { IPokemon, IPokemonDetail, IPokeType } from '@interfaces/ipokemon';
 import Tabs from '@components/tabs';
 import About from '@components/about';
-import { ISpecies } from '@interfaces/ispecies';
 import Modal from '@components/modal';
 import { PokeInfo, PokeTitle, PokeType, PokeAction } from '@styles/pokemon.styles';
-import { defaultLanguage, pokeBall } from '@utils/constant';
-import { getFormattedId } from '@utils/string';
-import { isEmpty, capitalize } from 'lodash';
+import { language, pokeBall } from '@utils/constant';
+import { formatText, getFormattedId } from '@utils/string';
+import { isEmpty } from 'lodash';
 import { useQuery } from '@apollo/client';
 import { GET_POKEMON } from '@utils/graphqlQuery';
 import Image from 'next/image';
@@ -16,8 +15,8 @@ import { Skeleton } from '@styles/skeleton.styles';
 
 const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose }) => {
   const [pokemonInfo, setPokemonInfo] = useState<IPokemon>(pokemon);
-  const [pokeSpecies, setPokeSpecies] = useState<ISpecies>();
-  const { id, name, image, height, weight, abilities, sprites, types, species } = pokemonInfo || {};
+  const { id, name, image, types, species, pokeSpecies } = pokemonInfo || {};
+  const { color, genera } = pokeSpecies || {};
 
   const { loading: loadingData, error } = useQuery(GET_POKEMON, {
     skip: !showDetail || !pokemon || isEmpty(pokemon?.name),
@@ -33,7 +32,8 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
     if (species) {
       const fetchSpecies = async () => {
         const response = await fetch(species.url);
-        setPokeSpecies(await response.json());
+        const pokeSpecies = await response.json();
+        setPokemonInfo({ ...pokemonInfo, pokeSpecies });
       };
 
       fetchSpecies();
@@ -41,11 +41,10 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
   }, [species]);
 
   const loading = loadingData || !pokeSpecies;
-  const genus = pokeSpecies?.genera?.find((gen) => gen.language.name === defaultLanguage)?.genus;
+  const genus = genera?.find((gen) => gen.language.name === language)?.genus;
 
   const handleClose = () => {
     setPokemonInfo(undefined);
-    setPokeSpecies(undefined);
     onClose();
   };
   const skeletonDetails = () => (
@@ -72,20 +71,20 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
       info={
         <PokeInfo>
           <PokeTitle>
-            <h2>{capitalize(name)}</h2>
+            <h2>{formatText(name)}</h2>
             <h3>{getFormattedId(id)}</h3>
           </PokeTitle>
           <PokeTitle>
             <PokeType>
               {types?.map((type: IPokeType, index: number) => (
-                <span key={index}>{capitalize(type.type.name)}</span>
+                <span key={index}>{formatText(type.type.name)}</span>
               ))}
             </PokeType>
             <b>{genus}</b>
           </PokeTitle>
         </PokeInfo>
       }
-      color={pokeSpecies?.color?.name}
+      color={color?.name}
       as="sheets"
     >
       {image && (
@@ -99,7 +98,7 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
         ) : (
           <Tabs maxHeight="49vh" withBorder>
             <Tabs.Item title="About">
-              <About height={height} weight={weight} abilities={abilities} sprites={sprites} />
+              <About {...pokemonInfo} />
             </Tabs.Item>
             <Tabs.Item title="Base Stats">Base Stats</Tabs.Item>
             <Tabs.Item title="Evolution">Evolution</Tabs.Item>

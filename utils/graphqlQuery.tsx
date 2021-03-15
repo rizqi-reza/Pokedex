@@ -25,6 +25,7 @@ export const GET_POKEMON = gql`
       message
       weight
       height
+      base_experience
       species {
         url
         name
@@ -49,20 +50,6 @@ export const GET_POKEMON = gql`
         effort
         stat {
           name
-        }
-      }
-      moves {
-        move {
-          name
-        }
-        version_group_details {
-          level_learned_at
-          move_learn_method {
-            name
-          }
-          version_group {
-            name
-          }
         }
       }
     }

@@ -1,16 +1,37 @@
-import { IPokeAbilities, IPokeAbout } from '@interfaces/ipokemon';
-import { Card, CardHeader, CardBadge, CardSubBadge, CardBody } from '@styles/card.styles';
+import { IPokeAbilities, IPokemon } from '@interfaces/ipokemon';
+import { Card, CardHeader, CardBody } from '@styles/card.styles';
 import { Grid } from '@styles/grid.styles';
 import { PokeAbility, PokeSprites } from '@styles/pokemon.styles';
 import { calculteDimension } from '@utils/number';
-import { capitalize } from 'lodash';
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
+import { pokemonVersion } from '@utils/constant';
+import { formatText } from '@utils/string';
 
-const About: React.FC<IPokeAbout> = ({ height, weight, abilities, sprites }) => {
+const About: React.FC<IPokemon> = ({
+  height,
+  weight,
+  base_experience,
+  abilities,
+  sprites,
+  pokeSpecies,
+}) => {
+  const {
+    base_happiness,
+    flavor_text_entries,
+    capture_rate,
+    growth_rate,
+    egg_groups,
+    hatch_counter,
+  } = pokeSpecies || {};
+  const description = flavor_text_entries?.find((text) => text.version.name === pokemonVersion)
+    ?.flavor_text;
+
+  const groups = egg_groups?.map((egg) => formatText(egg.name))?.join(', ');
+
   return (
     <>
-      <h3>Dimension</h3>
+      <p style={{ textAlign: 'justify' }}>{description}</p>
       <Grid>
         <Card>
           <CardHeader>Height</CardHeader>
@@ -26,10 +47,34 @@ const About: React.FC<IPokeAbout> = ({ height, weight, abilities, sprites }) => 
       <PokeAbility>
         {abilities?.map((ability: IPokeAbilities, index: number) => (
           <li key={index}>
-            {capitalize(ability?.ability.name)} {ability?.is_hidden && '(Hidden Ability)'}
+            {formatText(ability?.ability.name)} {ability?.is_hidden && '(Hidden Ability)'}
           </li>
         ))}
       </PokeAbility>
+
+      <h3>Training</h3>
+      <Grid>
+        <span>Base Experience</span>
+        <span>{base_experience}</span>
+
+        <span>Base Happiness</span>
+        <span>{base_happiness}</span>
+
+        <span>Catch Rate</span>
+        <span>{capture_rate}%</span>
+
+        <span>Growth Rate</span>
+        <span>{formatText(growth_rate.name)}</span>
+      </Grid>
+
+      <h3>Breeding</h3>
+      <Grid>
+        <span>Egg Groups</span>
+        <span>{groups}</span>
+
+        <span>Egg Cycles</span>
+        <span>{hatch_counter}</span>
+      </Grid>
 
       {sprites && (
         <Grid>

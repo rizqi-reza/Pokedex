@@ -1,3 +1,5 @@
+import { ISpecies } from './ispecies';
+
 export interface IPokeBase {
   url?: string;
   name?: string;
@@ -11,7 +13,9 @@ export interface IPokemon {
   weight: number;
   height: number;
   abilities: IPokeAbilities[];
+  base_experience: number;
   species: IPokeBase;
+  pokeSpecies: ISpecies;
   sprites: IPokeSprites;
   color?: string;
   onClick?: (name: string) => void;
@@ -28,13 +32,6 @@ export interface IPokeType {
   type: {
     name: string;
   };
-}
-
-export interface IPokeAbout {
-  height: number;
-  weight: number;
-  abilities: IPokeAbilities[];
-  sprites: IPokeSprites;
 }
 
 export interface IPokeAbilities {
