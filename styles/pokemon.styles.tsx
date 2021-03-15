@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { IPokeBall, IPokeAction } from '@interfaces/ipokemon';
+import { IPokeBall, IPokeAction, IPokeInfo } from '@interfaces/ipokemon';
 
 export const PokeBall = styled.span<IPokeBall>(({ background, width, height, isActive }) => ({
   display: 'inline-block',
@@ -20,10 +20,23 @@ export const PokeWrapper = styled.div({
 });
 
 export const PokeInfo = styled.div({
-  width: '100%',
+  padding: 16,
+  color: '#fff',
+  height: '100%',
 });
 
-export const PokeTitle = styled.div({
+export const PokeImage = styled.div<{ show?: boolean }>(({ show = true }) => ({
+  display: 'block',
+  left: 0,
+  right: 0,
+  marginTop: '-8%',
+  textAlign: 'center',
+  objectFit: 'cover',
+  opacity: show ? 1 : 0,
+  transition: 'all 0.3s',
+}));
+
+export const PokeHeaderWrapper = styled.div({
   display: 'flex',
   justifyContent: 'space-between',
   width: '100%',

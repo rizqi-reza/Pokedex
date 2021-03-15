@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 interface ITabs {
   selected?: boolean;
   variant?: 'default' | 'badge';
+  fixedHeader?: boolean;
 }
 
 export const TabsStyled = styled.div({
@@ -10,7 +11,7 @@ export const TabsStyled = styled.div({
   height: '100%',
 });
 
-export const TabsList = styled.div<{ fixedHeader: boolean }>(({ fixedHeader }) => ({
+export const TabsList = styled.div<ITabs>(({ variant, fixedHeader }) => ({
   position: fixedHeader ? 'fixed' : 'relative',
   top: fixedHeader ? 0 : undefined,
   left: fixedHeader ? 0 : undefined,
@@ -19,7 +20,7 @@ export const TabsList = styled.div<{ fixedHeader: boolean }>(({ fixedHeader }) =
   boxShadow: fixedHeader ? '0 4px 16px 0 rgba(0,0,0,0.1)' : undefined,
   zIndex: 999,
   display: 'flex',
-  justifyContent: 'center',
+  justifyContent: variant === 'badge' ? 'center' : 'space-evenly',
   maxWidth: '100%',
   overflow: 'auto hidden',
   whiteSpace: 'nowrap',
@@ -38,7 +39,7 @@ export const Title = styled.div<ITabs>(({ selected, variant }) => ({
   fontWeight: 600,
   textTransform: 'uppercase',
   fontSize: 12,
-  padding: variant === 'badge' ? 8 : 16,
+  padding: variant === 'badge' ? 8 : '16px 4px',
   margin: variant === 'badge' ? '16px 0' : 0,
   color: selected ? (variant === 'badge' ? '#fff' : '#2196f3') : '#000',
   backgroundColor: variant === 'badge' && selected ? '#2196f3' : undefined,

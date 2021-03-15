@@ -42,7 +42,7 @@ const Tabs: React.FC<ITabs> & ISubTabs = ({
 
   return (
     <TabsStyled>
-      <TabsList fixedHeader={fixedHeader}>
+      <TabsList fixedHeader={fixedHeader} variant={variant}>
         {React.Children.map(children, (item: any, index) => {
           return (
             <TitleWrapper key={index} onClick={() => handleChange(index)}>

@@ -6,7 +6,6 @@ import { defaultVariables } from '@utils/constant';
 import { GET_POKEMON_LIST } from '@utils/graphqlQuery';
 import React, { useEffect, useState } from 'react';
 import { Grid } from '@styles/grid.styles';
-import { usePalette } from 'react-palette';
 import { PokeWrapper } from '@styles/pokemon.styles';
 import PokemonDetails from '@components/pokemonDetails';
 import { Skeleton } from '@styles/skeleton.styles';
@@ -17,8 +16,6 @@ const PokemonList: React.FC<{ owned: boolean }> = ({ owned }) => {
   const [selectedPokemon, setSelectedPokemon] = useState<IPokemon>();
   const [nextOffset, setNextOffset] = useState<number>(0);
   const [totalData, setTotalData] = useState<number>(0);
-
-  const { data: pokemonColor, loading: loadingColor } = usePalette(selectedPokemon?.image);
 
   const { loading, error } = useQuery(GET_POKEMON_LIST, {
     skip: owned,
@@ -70,7 +67,7 @@ const PokemonList: React.FC<{ owned: boolean }> = ({ owned }) => {
             <Pokemon {...pokemon} key={index} onClick={handleOpenDetail} />
           ))}
         </Grid>
-        {canLoadMore && <p style={{ textAlign: 'center' }}>Scroll to load more</p>}
+        {canLoadMore && !loading && <p style={{ textAlign: 'center' }}>Scroll to load more</p>}
         {loading && <Skeleton marginTop={8}>Loading...</Skeleton>}
       </PokeWrapper>
       <PokemonDetails
