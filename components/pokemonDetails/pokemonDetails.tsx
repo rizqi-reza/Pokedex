@@ -2,7 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { IPokemon, IPokemonDetail, IPokeType } from '@interfaces/ipokemon';
 import Tabs from '@components/tabs';
 import About from '@components/about';
-import { PokeInfo, PokeHeaderWrapper, PokeType, PokeImage } from '@styles/pokemon.styles';
+import {
+  PokeInfo,
+  PokeHeaderWrapper,
+  PokeType,
+  PokeImage,
+  PokeAction,
+} from '@styles/pokemon.styles';
 import { language, pokeBall } from '@utils/constant';
 import { formatText, getFormattedId } from '@utils/string';
 import { isEmpty } from 'lodash';
@@ -13,11 +19,14 @@ import { Grid } from '@styles/grid.styles';
 import { Skeleton } from '@styles/skeleton.styles';
 import SheetModal from '@components/sheet';
 import { ModalClose } from '@styles/modal.styles';
+import Stats from '@components/stats';
+import Evolution from '@components/evolution';
 
 const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose }) => {
+  const [loadingSpecies, setLoadingSpecies] = useState<boolean>(false);
   const [pokemonInfo, setPokemonInfo] = useState<IPokemon>(pokemon);
   const [showImage, setShowImage] = useState<boolean>(true);
-  const { id, name, image, types, species, pokeSpecies } = pokemonInfo || {};
+  const { id, name, image, types, species, stats, pokeSpecies } = pokemonInfo || {};
   const { color, genera } = pokeSpecies || {};
 
   const { loading: loadingData, error } = useQuery(GET_POKEMON, {
@@ -33,16 +42,18 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
     // get species details using rest api (graphql version not completed yet)
     if (species) {
       const fetchSpecies = async () => {
+        // setLoadingSpecies(true);
         const response = await fetch(species.url);
         const pokeSpecies = await response.json();
         setPokemonInfo({ ...pokemonInfo, pokeSpecies });
+        setLoadingSpecies(false);
       };
 
       fetchSpecies();
     }
   }, [species]);
 
-  const loading = loadingData || !pokeSpecies;
+  const loading = loadingData || loadingSpecies;
   const genus = genera?.find((gen) => gen.language.name === language)?.genus;
 
   const handleClose = () => {
@@ -55,6 +66,15 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
       setShowImage(false);
     } else {
       setShowImage(true);
+    }
+  };
+
+  const handleCatch = () => {
+    const successRate = Math.random();
+    if (successRate < 0.5) {
+      alert('The pokemon managed to escape');
+    } else {
+      alert('You caught a pokemon, lets give it a nickname!');
     }
   };
 
@@ -106,20 +126,30 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
               <Image src={image} alt={name} width={220} height={220} />
             </PokeImage>
           )}
+
+          <PokeAction variant="catch" onClick={handleCatch}>
+            {pokeBall(true)}
+          </PokeAction>
         </PokeInfo>
       }
     >
       {loading ? (
         skeletonDetails()
       ) : (
-        <Tabs withBorder>
-          <Tabs.Item title="About">
-            <About {...pokemonInfo} />
-          </Tabs.Item>
-          <Tabs.Item title="Base Stats">Base Stats</Tabs.Item>
-          <Tabs.Item title="Evolution">Evolution</Tabs.Item>
-          <Tabs.Item title="Moves">Moves</Tabs.Item>
-        </Tabs>
+        <>
+          <Tabs withBorder>
+            <Tabs.Item title="About">
+              <About {...pokemonInfo} />
+            </Tabs.Item>
+            <Tabs.Item title="Base Stats">
+              <Stats stats={stats} />
+            </Tabs.Item>
+            <Tabs.Item title="Evolution">
+              <Evolution {...pokeSpecies} />
+            </Tabs.Item>
+            <Tabs.Item title="Moves">Moves</Tabs.Item>
+          </Tabs>
+        </>
       )}
     </SheetModal>
   );

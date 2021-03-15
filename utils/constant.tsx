@@ -9,3 +9,4 @@ export const pokeBall = (isActive: boolean = false, width: number = 30, height: 
 );
 
 export const defaultVariables = { limit: 10, offset: 0 };
+export const maxStat = 180;

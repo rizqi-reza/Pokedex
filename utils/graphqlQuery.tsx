@@ -55,3 +55,14 @@ export const GET_POKEMON = gql`
     }
   }
 `;
+
+export const GET_EVOLUTION = gql`
+  query getEvolution($id: String!) {
+    evolutionChain(id: $id) {
+      status
+      message
+      response
+      params
+    }
+  }
+`;

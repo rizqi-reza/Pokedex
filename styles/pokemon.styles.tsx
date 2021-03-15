@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { IPokeBall, IPokeAction, IPokeInfo } from '@interfaces/ipokemon';
+import { IPokeBall, IPokeAction } from '@interfaces/ipokemon';
 
 export const PokeBall = styled.span<IPokeBall>(({ background, width, height, isActive }) => ({
   display: 'inline-block',
@@ -90,4 +90,5 @@ export const PokeAction = styled.button<IPokeAction>(({ variant }) => ({
   ':hover': {
     boxShadow: 'none',
   },
+  zIndex: 9,
 }));

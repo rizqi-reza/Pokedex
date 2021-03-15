@@ -68,7 +68,7 @@ export const Bar = styled.div<ITabs>(({ selected }) => ({
 
 export const Content = styled.div<{ withBorder: boolean; maxHeight: string; noPadding: boolean }>(
   ({ withBorder, maxHeight, noPadding }) => ({
-    padding: noPadding ? 0 : '0 16px',
+    padding: noPadding ? 0 : '16px 16px 0',
     borderTop: withBorder ? `1px solid #e0e0e0` : 'none',
     fontSize: 14,
     overflowY: 'scroll',

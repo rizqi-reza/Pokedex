@@ -31,7 +31,7 @@ const About: React.FC<IPokemon> = ({
 
   return (
     <>
-      <p style={{ textAlign: 'justify', marginTop: 0 }}>{description}</p>
+      <p style={{ textAlign: 'justify' }}>{description}</p>
       <Grid>
         <Card>
           <CardHeader>Height</CardHeader>
@@ -64,7 +64,7 @@ const About: React.FC<IPokemon> = ({
         <span>{capture_rate}%</span>
 
         <span>Growth Rate</span>
-        <span>{formatText(growth_rate?.name)}</span>
+        <span>{formatText(growth_rate.name)}</span>
       </Grid>
 
       <h3>Breeding</h3>
