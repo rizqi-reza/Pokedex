@@ -46,10 +46,11 @@ export const CardBody = styled.div({
 });
 
 export const CardImage = styled.img({
+  position: 'absolute',
   float: 'right',
   maxWidth: 96,
-  marginBottom: -22,
-  marginRight: -22,
+  right: -5,
+  bottom: -5,
   borderRadius: '50%',
   zIndex: 999,
 });

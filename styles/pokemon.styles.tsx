@@ -19,6 +19,11 @@ export const PokeWrapper = styled.div({
   marginTop: 60,
 });
 
+export const PokeDetailWrapper = styled.div({
+  padding: '0 16px',
+  overflowY: 'scroll',
+});
+
 export const PokeInfo = styled.div({
   padding: 16,
   color: '#fff',
@@ -27,8 +32,10 @@ export const PokeInfo = styled.div({
 
 export const PokeImage = styled.div<{ show?: boolean }>(({ show = true }) => ({
   display: 'block',
+  position: 'absolute',
   left: 0,
   right: 0,
+  top: 100,
   textAlign: 'center',
   objectFit: 'cover',
   opacity: show ? 1 : 0,
@@ -36,6 +43,7 @@ export const PokeImage = styled.div<{ show?: boolean }>(({ show = true }) => ({
 }));
 
 export const PokeHeaderWrapper = styled.div({
+  position: 'relative',
   display: 'flex',
   justifyContent: 'space-between',
   width: '100%',
@@ -67,6 +75,7 @@ export const PokeSprites = styled.div({
 });
 
 export const PokeEvoTrigger = styled.div({
+  fontSize: 12,
   display: 'flex',
   flexDirection: 'column',
   textAlign: 'center',

@@ -8,6 +8,7 @@ import {
   PokeType,
   PokeImage,
   PokeAction,
+  PokeDetailWrapper,
 } from '@styles/pokemon.styles';
 import { language, pokeBall } from '@utils/constant';
 import { formatText, getFormattedId } from '@utils/string';
@@ -26,6 +27,7 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
   const [loadingSpecies, setLoadingSpecies] = useState<boolean>(false);
   const [pokemonInfo, setPokemonInfo] = useState<IPokemon>(pokemon);
   const [showImage, setShowImage] = useState<boolean>(true);
+  const [activeTab, setActiveTab] = useState<number>(0);
   const { id, name, image, types, species, stats, pokeSpecies } = pokemonInfo || {};
   const { color, genera } = pokeSpecies || {};
 
@@ -42,7 +44,7 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
     // get species details using rest api (graphql version not completed yet)
     if (species) {
       const fetchSpecies = async () => {
-        // setLoadingSpecies(true);
+        setLoadingSpecies(true);
         const response = await fetch(species.url);
         const pokeSpecies = await response.json();
         setPokemonInfo({ ...pokemonInfo, pokeSpecies });
@@ -58,6 +60,7 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
 
   const handleClose = () => {
     setPokemonInfo(undefined);
+    setActiveTab(0);
     onClose();
   };
 
@@ -75,6 +78,23 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
       alert('The pokemon managed to escape');
     } else {
       alert('You caught a pokemon, lets give it a nickname!');
+    }
+  };
+
+  const handleChangeTab = (index: number) => {
+    setActiveTab(index);
+  };
+
+  const sheetContent = () => {
+    switch (activeTab) {
+      case 1:
+        return <Stats stats={stats} />;
+      case 2:
+        return <Evolution {...pokeSpecies} />;
+      case 3:
+        return <h3>Moves</h3>;
+      default:
+        return <About {...pokemonInfo} />;
     }
   };
 
@@ -104,6 +124,12 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
       backdropColor={color?.name}
       customBackdrop={
         <PokeInfo>
+          {image && (
+            <PokeImage show={showImage}>
+              <Image src={image} alt={name} width={220} height={220} />
+            </PokeImage>
+          )}
+
           <PokeHeaderWrapper>
             {pokeBall()}
             <ModalClose onClick={handleClose}>&times;</ModalClose>
@@ -121,38 +147,21 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
             <b>{genus}</b>
           </PokeHeaderWrapper>
 
-          {image && (
-            <PokeImage show={showImage}>
-              <Image src={image} alt={name} width={220} height={220} />
-            </PokeImage>
-          )}
-
           <PokeAction variant="catch" onClick={handleCatch}>
             {pokeBall(true)}
           </PokeAction>
         </PokeInfo>
       }
+      customHeader={
+        <Tabs withBorder onChange={handleChangeTab}>
+          <Tabs.Item title="About" />
+          <Tabs.Item title="Base Stats" />
+          <Tabs.Item title="Evolution" />
+          <Tabs.Item title="Moves" />
+        </Tabs>
+      }
     >
-      {loading ? (
-        skeletonDetails()
-      ) : (
-        <>
-          <Tabs withBorder>
-            <Tabs.Item title="About">
-              <About {...pokemonInfo} />
-            </Tabs.Item>
-            <Tabs.Item title="Base Stats">
-              <Stats stats={stats} />
-            </Tabs.Item>
-            <Tabs.Item title="Evolution">
-              <Evolution {...pokeSpecies} />
-            </Tabs.Item>
-            <Tabs.Item title="Moves">
-              <h3>Moves</h3>
-            </Tabs.Item>
-          </Tabs>
-        </>
-      )}
+      <PokeDetailWrapper>{loading ? skeletonDetails() : sheetContent()}</PokeDetailWrapper>
     </SheetModal>
   );
 };

@@ -13,6 +13,7 @@ const SheetModal: React.FC<ISheet> = ({
   children,
   backdropColor,
   customBackdrop,
+  customHeader,
   onClose,
   onSnap,
 }) => {
@@ -51,6 +52,7 @@ const SheetModal: React.FC<ISheet> = ({
         <SheetWrapper>
           <Sheet.Container>
             <Sheet.Header />
+            {customHeader && <Sheet.Header>{customHeader}</Sheet.Header>}
             <Sheet.Content style={{ padding: 8 }}>{children}</Sheet.Content>
           </Sheet.Container>
 

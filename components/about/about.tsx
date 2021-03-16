@@ -77,7 +77,7 @@ const About: React.FC<IPokemon> = ({
       </Grid>
 
       {sprites && (
-        <Grid>
+        <Grid style={{ margin: '16px 0' }}>
           <PokeSprites>
             <Image src={sprites.front_default} alt="front_sprites" width={200} height={200} />
             Front

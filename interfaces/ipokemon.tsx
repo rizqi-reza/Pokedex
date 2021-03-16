@@ -93,7 +93,11 @@ export interface IPokeEvoDetail {
   min_beauty: number;
   min_happiness: number;
   min_level: number;
+  item: IPokeBase;
   location: IPokeBase;
+  known_move: IPokeBase;
+  known_move_type: IPokeBase;
+  held_item: IPokeBase;
   time_of_day: string;
   trigger: IPokeBase;
 }

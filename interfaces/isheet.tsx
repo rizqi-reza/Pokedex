@@ -4,6 +4,7 @@ export interface ISheet {
   initialSnap?: number;
   backdropColor: string;
   customBackdrop?: any;
+  customHeader?: any;
   onClose?: () => void;
   onSnap?: (index: number) => void;
 }

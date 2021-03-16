@@ -24,12 +24,12 @@ const Pokemon: React.FC<IPokemon> = ({ id, name, image, onClick }) => {
     <Skeleton marginTop={8} height={100} />
   ) : (
     <Card background={color.lightVibrant} onClick={handleClickPokemon} height={100}>
+      <CardImage src={image} alt={name} />
       <CardHeader>
         <CardBadge>{formatText(name)}</CardBadge>
         <CardSubBadge>{getFormattedId(id)}</CardSubBadge>
       </CardHeader>
 
-      <CardImage src={image} alt={name} />
       <CardBackground src={pokeballImage} alt="card_background" />
     </Card>
   );
