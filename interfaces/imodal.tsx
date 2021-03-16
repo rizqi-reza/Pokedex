@@ -2,7 +2,6 @@ export interface IModal extends React.HTMLAttributes<HTMLDivElement> {
   show: boolean;
   title?: any;
   info?: any;
-  as?: 'modal' | 'sheets';
   onClose: () => void;
 }
 
@@ -14,7 +13,6 @@ export interface IModalWrapper {
 export interface ISubModal {
   Body: React.FC<IModalBody>;
   Footer: React.FC;
-  Image: React.FC;
 }
 
 export interface IModalHeader {

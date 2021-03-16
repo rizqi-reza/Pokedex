@@ -7,3 +7,9 @@ export const getFormattedId = (id: number) => {
 export const formatText = (value: string) => {
   return startCase(lowerCase(value));
 };
+
+export const parseUrlParam = (url: string) => {
+  const urls = url?.split('/');
+  const params = urls ? urls[urls?.length - 2] : '';
+  return params;
+};

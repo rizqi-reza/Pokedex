@@ -7,6 +7,7 @@ export const pokeballImage = process.env.NEXT_PUBLIC_POKEBALL_IMAGE;
 export const pokeBall = (isActive: boolean = false, width: number = 30, height: number = 30) => (
   <PokeBall background={pokeballImage} isActive={isActive} width={width} height={height} />
 );
+export const pokeImageBaseUrl = process.env.NEXT_PUBLIC_POKE_IMAGE_BASE_URL;
 
 export const defaultVariables = { limit: 10, offset: 0 };
 export const maxStat = 180;

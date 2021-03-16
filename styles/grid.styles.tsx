@@ -5,6 +5,7 @@ export const Grid = styled.div<{ width?: string[]; rowGap?: number }>(
     display: 'grid',
     gridTemplateColumns: `${width.join(' ')}`,
     gap: 12,
+    alignItems: 'center',
     rowGap,
   }),
 );

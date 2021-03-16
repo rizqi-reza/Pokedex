@@ -31,7 +31,7 @@ const About: React.FC<IPokemon> = ({
 
   return (
     <>
-      <p style={{ textAlign: 'justify', marginTop: 0 }}>{description}</p>
+      <p style={{ textAlign: 'justify' }}>{description}</p>
       <Grid>
         <Card>
           <CardHeader>Height</CardHeader>

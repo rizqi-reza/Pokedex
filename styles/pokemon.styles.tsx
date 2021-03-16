@@ -29,7 +29,6 @@ export const PokeImage = styled.div<{ show?: boolean }>(({ show = true }) => ({
   display: 'block',
   left: 0,
   right: 0,
-  marginTop: '-8%',
   textAlign: 'center',
   objectFit: 'cover',
   opacity: show ? 1 : 0,
@@ -65,6 +64,15 @@ export const PokeAbility = styled.ul({
 export const PokeSprites = styled.div({
   textAlign: 'center',
   fontWeight: 600,
+});
+
+export const PokeEvoTrigger = styled.div({
+  display: 'flex',
+  flexDirection: 'column',
+  textAlign: 'center',
+  img: {
+    width: 'min-content',
+  },
 });
 
 export const PokeAction = styled.button<IPokeAction>(({ variant }) => ({

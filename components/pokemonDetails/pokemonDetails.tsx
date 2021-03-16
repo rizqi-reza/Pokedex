@@ -147,7 +147,9 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
             <Tabs.Item title="Evolution">
               <Evolution {...pokeSpecies} />
             </Tabs.Item>
-            <Tabs.Item title="Moves">Moves</Tabs.Item>
+            <Tabs.Item title="Moves">
+              <h3>Moves</h3>
+            </Tabs.Item>
           </Tabs>
         </>
       )}
