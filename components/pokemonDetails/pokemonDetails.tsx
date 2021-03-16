@@ -22,22 +22,24 @@ import SheetModal from '@components/sheet';
 import { ModalClose } from '@styles/modal.styles';
 import Stats from '@components/stats';
 import Evolution from '@components/evolution';
+import Moves from '@components/moves';
 
 const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose }) => {
   const [loadingSpecies, setLoadingSpecies] = useState<boolean>(false);
   const [pokemonInfo, setPokemonInfo] = useState<IPokemon>(pokemon);
   const [showImage, setShowImage] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<number>(0);
-  const { id, name, image, types, species, stats, pokeSpecies } = pokemonInfo || {};
+  const { id, name, image, types, species, stats, moves, pokeSpecies } = pokemonInfo || {};
   const { color, genera } = pokeSpecies || {};
 
-  const { loading: loadingData, error } = useQuery(GET_POKEMON, {
+  const { loading: loadingData } = useQuery(GET_POKEMON, {
     skip: !showDetail || !pokemon || isEmpty(pokemon?.name),
     variables: { name: pokemon?.name },
     onCompleted: (data) => {
       const pokeData = data?.pokemon;
       setPokemonInfo({ ...pokemon, ...pokeData });
     },
+    onError: (error) => alert(error),
   });
 
   useEffect(() => {
@@ -92,7 +94,7 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
       case 2:
         return <Evolution {...pokeSpecies} />;
       case 3:
-        return <h3>Moves</h3>;
+        return <Moves moves={moves} />;
       default:
         return <About {...pokemonInfo} />;
     }

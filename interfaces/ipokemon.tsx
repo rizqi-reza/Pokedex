@@ -16,6 +16,8 @@ export interface IPokemon {
   pokeSpecies: IPokeSpecies;
   sprites: IPokeSprites;
   stats: IPokeStat[];
+  moves: { move: IPokeBase }[];
+  pokeMoves: IPokeMove;
   color?: string;
   onClick?: (name: string) => void;
 }
@@ -46,6 +48,19 @@ export interface IPokeStat {
   stat: {
     name: string;
   };
+}
+
+export interface IPokeMove {
+  id: number;
+  accuracy: number;
+  power: number;
+  pp: number;
+  damage_class: IPokeBase;
+  type: IPokeBase;
+  target: IPokeBase;
+  effect_entries: { effect: string }[];
+  effect_chance: number;
+  flavor_text_entries: IPokeFlavorTextEntries[];
 }
 
 export interface IPokeSprites {
@@ -79,7 +94,8 @@ export interface IPokeGenera {
 export interface IPokeFlavorTextEntries {
   flavor_text: string;
   language: IPokeBase;
-  version: IPokeBase;
+  version?: IPokeBase;
+  version_group?: IPokeBase;
 }
 
 export interface IPokeEvo {

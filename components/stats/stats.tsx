@@ -9,7 +9,7 @@ const Stats: React.FC<{ stats: IPokeStat[] }> = ({ stats }) => {
   return (
     <>
       <h3>Basic Stats</h3>
-      <Grid width={['120px', '25px', 'auto']} rowGap={22}>
+      <Grid template={['120px', '25px', 'auto']} rowGap={22}>
         {stats?.map((stat: IPokeStat, index: number) => (
           <>
             <label>{formatText(stat.stat.name)}</label>

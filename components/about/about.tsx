@@ -5,8 +5,7 @@ import { PokeAbility, PokeSprites } from '@styles/pokemon.styles';
 import { calculteDimension } from '@utils/number';
 import React from 'react';
 import Image from 'next/image';
-import { pokemonVersion } from '@utils/constant';
-import { formatText } from '@utils/string';
+import { formatText, getDescription } from '@utils/string';
 
 const About: React.FC<IPokemon> = ({
   height,
@@ -24,8 +23,7 @@ const About: React.FC<IPokemon> = ({
     egg_groups,
     hatch_counter,
   } = pokeSpecies || {};
-  const description = flavor_text_entries?.find((text) => text.version.name === pokemonVersion)
-    ?.flavor_text;
+  const description = getDescription(flavor_text_entries);
 
   const groups = egg_groups?.map((egg) => formatText(egg.name))?.join(', ');
 

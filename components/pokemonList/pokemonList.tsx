@@ -17,7 +17,7 @@ const PokemonList: React.FC<{ owned: boolean }> = ({ owned }) => {
   const [nextOffset, setNextOffset] = useState<number>(0);
   const [totalData, setTotalData] = useState<number>(0);
 
-  const { loading, error } = useQuery(GET_POKEMON_LIST, {
+  const { loading } = useQuery(GET_POKEMON_LIST, {
     skip: owned,
     variables,
     onCompleted: (data) => {
@@ -28,6 +28,7 @@ const PokemonList: React.FC<{ owned: boolean }> = ({ owned }) => {
       setTotalData(list?.count);
       setNextOffset(list?.nextOffset);
     },
+    onError: (error) => alert(error),
   });
 
   useEffect(() => {

@@ -35,6 +35,12 @@ export const GET_POKEMON = gql`
           name
         }
       }
+      moves {
+        move {
+          name
+          url
+        }
+      }
       abilities {
         ability {
           name
@@ -62,7 +68,16 @@ export const GET_EVOLUTION = gql`
       status
       message
       response
-      params
+    }
+  }
+`;
+
+export const GET_MOVE = gql`
+  query getMove($move: String!) {
+    move(move: $move) {
+      status
+      message
+      response
     }
   }
 `;

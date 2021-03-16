@@ -21,6 +21,7 @@ const Evolution: React.FC<IPokeSpecies> = ({ evolution_chain }) => {
       const pokeEvo: IPokeEvo = data?.evolutionChain?.response?.chain;
       setPokemonEvo(pokeEvo);
     },
+    onError: (error) => alert(error),
   });
 
   const getPokemonImage = (url: string) => {
