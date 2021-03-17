@@ -15,7 +15,7 @@ class MyDocument extends Document {
           <meta key="meta-description" name="description" content={defaultMetaDescription} />
           <meta name="application-name" content={defaultPageTitle} />
           <meta name="apple-mobile-web-app-capable" content="yes" />
-          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+          <meta name="apple-mobile-web-app-status-bar-style" content="default" />
           <meta name="apple-mobile-web-app-title" content={defaultPageTitle} />
           <meta name="description" content={defaultMetaDescription} />
           <meta name="mobile-web-app-capable" content="yes" />
