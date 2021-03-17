@@ -7,12 +7,15 @@ import {
   BackgroundContent,
 } from '@components/layouts/layouts.styles';
 import { pokeballImage } from '@utils/constant';
+import Image from 'next/image';
 
 const Layouts: React.FC = ({ children }) => {
   return (
     <LayoutStyle>
       <MainContent>
-        <BackgroundContent src={pokeballImage} alt="page_background" />
+        <BackgroundContent>
+          <Image src={pokeballImage} alt="page_background" width={350} height={350} />
+        </BackgroundContent>
         {children}
       </MainContent>
       <Wrapper>

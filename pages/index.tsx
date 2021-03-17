@@ -9,6 +9,7 @@ const HomePage: NextPage = () => {
   return (
     <>
       <Head>
+        <html lang="en" />
         <title>Pokedéx by Rizqi Reza</title>
         <meta
           name="description"

@@ -23,17 +23,18 @@ export const MainContent = styled.main({
   minHeight: 'calc(100vh - 60px)',
 });
 
-export const BackgroundContent = styled.img(() => ({
+export const BackgroundContent = styled.div({
   position: 'fixed',
   maxWidth: 350,
   right: -80,
   top: -30,
   opacity: 0.1,
   transform: 'rotate(-10deg)',
-}));
+});
 
 export const Footer = styled.div(() => ({
   position: 'fixed',
+  left: 0,
   bottom: 0,
   width: '100%',
   marginLeft: -8,

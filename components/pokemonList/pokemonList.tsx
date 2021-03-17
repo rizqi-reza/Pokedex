@@ -1,10 +1,10 @@
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import Pokemon from '@components/pokemon';
 import { IParam } from '@interfaces/igraphql';
 import { IPokemon } from '@interfaces/ipokemon';
 import { defaultVariables } from '@utils/constant';
 import { GET_POKEMON_LIST } from '@utils/graphqlQuery';
-import React, { useEffect, useState } from 'react';
 import { Grid } from '@styles/grid.styles';
 import { PokeEmpty, PokeWrapper } from '@styles/pokemon.styles';
 import PokemonDetails from '@components/pokemonDetails';
@@ -80,7 +80,7 @@ const PokemonList: React.FC<{ owned?: boolean }> = ({ owned }) => {
             <Pokemon {...pokemon} key={index} onClick={handleOpenDetail} />
           ))}
         </Grid>
-        {canLoadMore && !loading && <h4 style={{ textAlign: 'center' }}>Scroll to load more</h4>}
+        {canLoadMore && !loading && <h3 style={{ textAlign: 'center' }}>Scroll to load more</h3>}
         {loading && <Skeleton marginTop={8}>Loading...</Skeleton>}
         {!loading && owned && !pokeSource && (
           <PokeEmpty>
