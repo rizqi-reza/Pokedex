@@ -5,20 +5,20 @@ export interface IPokeBase {
 
 export interface IPokemon {
   id: number;
+  image: string;
   name: string;
   nickname?: string;
-  image: string;
-  types: IPokeType[];
-  weight: number;
-  height: number;
-  abilities: IPokeAbilities[];
-  base_experience: number;
-  species: IPokeBase;
-  pokeSpecies: IPokeSpecies;
-  sprites: IPokeSprites;
-  stats: IPokeStat[];
-  moves: { move: IPokeBase }[];
-  pokeMoves: IPokeMove;
+  types?: IPokeType[];
+  weight?: number;
+  height?: number;
+  abilities?: IPokeAbilities[];
+  base_experience?: number;
+  species?: IPokeBase;
+  pokeSpecies?: IPokeSpecies;
+  sprites?: IPokeSprites;
+  stats?: IPokeStat[];
+  moves?: { move: IPokeBase }[];
+  pokeMoves?: IPokeMove;
   color?: string;
   onClick?: (name: string) => void;
 }

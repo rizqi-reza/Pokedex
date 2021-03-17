@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { IModalBody, IModalHeader, IModalWrapper } from '@interfaces/imodal';
+import { IModalBody, IModalWrapper } from '@interfaces/imodal';
 
 export const Mask = styled.div<IModalWrapper>(({ show, backgroundColor, zIndex }) => ({
   position: 'fixed',

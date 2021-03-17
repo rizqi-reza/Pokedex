@@ -16,10 +16,6 @@ export interface ISubModal {
   Footer: React.FC;
 }
 
-export interface IModalHeader {
-  show?: boolean;
-}
-
 export interface IModalBody {
   withOutFooter?: boolean;
   maxHeight?: boolean;
