@@ -35,7 +35,7 @@ export const CardSubBadge = styled.label({
   height: 'fit-content',
   fontSize: 12,
   margin: '0 0 0 8px',
-  backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
   padding: '4px 8px',
   borderRadius: 16,
 });
