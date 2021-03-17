@@ -13,6 +13,12 @@
             "sizes": "192x192"
         },
         {
+            "src": "https://res.cloudinary.com/rizqireza/image/upload/v1616002532/Pokedex/pokeball-icon_stgm3g.svg",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "any maskable"
+        },
+        {
             "src": "https://res.cloudinary.com/rizqireza/image/upload/v1616001937/Pokedex/icon-32_tkzgni.png",
             "type": "image/png",
             "sizes": "32x32"
