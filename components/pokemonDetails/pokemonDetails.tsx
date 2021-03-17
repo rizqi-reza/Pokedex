@@ -25,6 +25,7 @@ import Moves from '@components/moves';
 import Modal from '@components/modal';
 import { SheetClose } from '@styles/sheet.styles';
 import Button from '@components/button';
+import { countPokemon, saveMyPokemon, validatePokemonName } from '@utils/localStorage';
 
 const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose }) => {
   const [loadingAction, setLoadingAction] = useState<boolean>(false);
@@ -34,6 +35,7 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
   const [showImage, setShowImage] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<number>(0);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [nickname, setNickname] = useState<string>('');
   const { id, name, image, types, species, stats, moves, pokeSpecies } = pokemonInfo || {};
   const { color, genera } = pokeSpecies || {};
 
@@ -64,6 +66,7 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
 
   const loading = loadingData || loadingSpecies;
   const genus = genera?.find((gen) => gen.language.name === language)?.genus;
+  const catchedPokemon = countPokemon(name);
 
   const handleCloseSheet = () => {
     setPokemonInfo(undefined);
@@ -92,7 +95,7 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
       setLoadingAction(false);
     };
 
-    setTimeout(catchPokemon, 3000);
+    setTimeout(catchPokemon, 2400);
   };
 
   const handleChangeTab = (index: number) => {
@@ -117,13 +120,41 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
   };
 
   const modalTitle = () => {
-    if (isSuccess) return 'Catch Pokemon Success!';
-    else return 'Catch Pokemon Failed!';
+    if (isSuccess) return 'Catch Pokémon Success!';
+    else return 'Catch Pokémon Failed!';
   };
 
   const modalBody = () => {
-    if (isSuccess) return 'Catch Pokemon Success!';
+    if (isSuccess)
+      return (
+        <input placeholder="Give a nickname" onChange={handleChangeNickname} value={nickname} />
+      );
     else return 'The pokemon managed to escape.';
+  };
+
+  const handleChangeNickname = (e) => {
+    setNickname(e.target.value);
+  };
+
+  const handleSubmitPokemon = () => {
+    if (isSuccess) {
+      const valid = validatePokemonName(nickname);
+      if (valid) {
+        setLoadingAction(true);
+        const savePokemon = () => {
+          saveMyPokemon(pokemon, nickname);
+          setNickname('');
+          setShowModal(false);
+          setLoadingAction(false);
+        };
+
+        setTimeout(savePokemon, 2400);
+      } else {
+        alert('nickname already used!');
+      }
+    } else {
+      handleCloseModal();
+    }
   };
 
   const skeletonDetails = () => (
@@ -160,7 +191,7 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
             )}
 
             <PokeHeaderWrapper>
-              {pokeBall()}
+              {pokeBall(catchedPokemon > 0, catchedPokemon)}
               <SheetClose onClick={handleCloseSheet}>&times;</SheetClose>
             </PokeHeaderWrapper>
             <PokeHeaderWrapper>
@@ -200,7 +231,7 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
       <Modal show={showModal} onClose={handleCloseModal} title={modalTitle()}>
         <Modal.Body>{modalBody()}</Modal.Body>
         <Modal.Footer>
-          <Button size="md" color="primary">
+          <Button size="md" color="primary" onClick={handleSubmitPokemon} loading={loadingAction}>
             {isSuccess ? 'Save' : 'OK'}
           </Button>
         </Modal.Footer>

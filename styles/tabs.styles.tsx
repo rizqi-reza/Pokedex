@@ -17,7 +17,6 @@ export const TabsList = styled.div<ITabs>(({ variant, fixedHeader }) => ({
   left: fixedHeader ? 0 : undefined,
   right: fixedHeader ? 0 : undefined,
   backgroundColor: fixedHeader ? '#fff' : undefined,
-  boxShadow: fixedHeader ? '0 4px 16px 0 rgba(0,0,0,0.1)' : undefined,
   zIndex: 999,
   display: 'flex',
   justifyContent: variant === 'badge' ? 'center' : 'space-evenly',

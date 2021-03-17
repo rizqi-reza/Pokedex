@@ -7,16 +7,14 @@ import Tabs from '@components/tabs';
 
 const HomePage: NextPage = () => {
   return (
-    <Layouts title="Pokedex" noHeader>
-      <Head>
-        <title>Pokedex by Rizqi Reza</title>
-      </Head>
-
+    <Layouts>
       <Tabs fixedHeader noPadding variant="badge">
-        <Tabs.Item title="Pokedex">
-          <PokemonList owned={false} />
+        <Tabs.Item title="Pokédex">
+          <PokemonList />
         </Tabs.Item>
-        <Tabs.Item title="My Pokemon">My Pokemon</Tabs.Item>
+        <Tabs.Item title="My Pokémon">
+          <PokemonList owned />
+        </Tabs.Item>
       </Tabs>
     </Layouts>
   );

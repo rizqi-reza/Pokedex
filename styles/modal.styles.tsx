@@ -80,6 +80,7 @@ export const ModalTitle = styled.div({
   margin: 0,
   display: 'flex',
   justifyContent: 'space-between',
+  fontWeight: 'bold',
 });
 
 export const ModalClose = styled.div({

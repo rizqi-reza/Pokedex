@@ -8,22 +8,43 @@ const spin = keyframes`
   }
 `;
 
-export const PokeBall = styled.span<IPokeBall>(({ background, width, height, isActive }) => ({
+export const PokeBall = styled.span<IPokeBall>(({ width, height, isActive }) => ({
   display: 'inline-block',
   backgroundSize: 'cover',
-  backgroundImage: `url(${background})`,
   backgroundColor: '#fff',
   border: '2px solid #fff',
   borderRadius: '50%',
   width,
   height,
-  filter: isActive
-    ? 'invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%)'
-    : 'invert(27%) sepia(51%) saturate(100%) hue-rotate(346deg) brightness(100%) contrast(45%)',
+  img: {
+    filter: isActive
+      ? 'invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%)'
+      : 'invert(27%) sepia(51%) saturate(100%) hue-rotate(346deg) brightness(100%) contrast(45%)',
+  },
+  opacity: 0.8,
+  span: {
+    fontWeight: 'bold',
+    position: 'absolute',
+    marginLeft: 8,
+    width,
+    filter: 'unset',
+    opacity: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    fontSize: 12,
+    padding: '4px 8px',
+    borderRadius: 16,
+  },
 }));
 
 export const PokeWrapper = styled.div({
   marginTop: 60,
+  h2: {
+    marginBottom: 0,
+  },
+  p: {
+    marginTop: 0,
+    color: '#9e9e9e',
+  },
 });
 
 export const PokeDetailWrapper = styled.div({
@@ -117,3 +138,11 @@ export const PokeAction = styled.button<IPokeAction>(({ variant, isLoading }) =>
     boxShadow: 'none',
   },
 }));
+
+export const PokeEmpty = styled.div({
+  textAlign: 'center',
+  fontSize: 24,
+  backgroundColor: 'rgba(0, 0, 0, 0.2)',
+  borderRadius: 8,
+  padding: 8,
+});

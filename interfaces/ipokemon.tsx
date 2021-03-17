@@ -6,6 +6,7 @@ export interface IPokeBase {
 export interface IPokemon {
   id: number;
   name: string;
+  nickname?: string;
   image: string;
   types: IPokeType[];
   weight: number;
@@ -119,7 +120,6 @@ export interface IPokeEvoDetail {
 }
 
 export interface IPokeBall {
-  background?: string;
   width?: number;
   height?: number;
   isActive: boolean;

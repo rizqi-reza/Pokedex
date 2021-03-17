@@ -14,35 +14,16 @@ export const Wrapper = styled.div(() => ({
   margin: '0px auto',
 }));
 
-export const Header = styled.div<IHeader>(({ show }) => ({
-  color: '#fff',
-  display: show ? 'block' : 'none',
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  right: 0,
-  backgroundColor: '#03ac0e',
-  padding: '0 8px 0 8px',
-  boxShadow: '0 4px 16px 0 rgba(0,0,0,0.1)',
-  zIndex: 999,
-  div: {
-    height: 60,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-}));
-
-export const MainContent = styled.main<IContent>(({ noHeader }) => ({
+export const MainContent = styled.main({
   color: '#000',
-  margin: noHeader ? '0px auto' : '60px auto 0px',
+  margin: '0px auto',
   width: '100%',
   maxWidth: 480,
   backgroundColor: '#fff',
   padding: 8,
   boxSizing: 'border-box',
   minHeight: 'calc(100vh - 60px)',
-}));
+});
 
 export const BackgroundContent = styled.img(() => ({
   position: 'fixed',
@@ -54,9 +35,14 @@ export const BackgroundContent = styled.img(() => ({
 }));
 
 export const Footer = styled.div(() => ({
+  position: 'fixed',
+  bottom: 0,
+  width: '100%',
+  marginLeft: -8,
   color: '#989898',
   backgroundColor: '#fff',
-  padding: '1.5em',
+  padding: '1.5em 0',
   fontSize: 12,
   textAlign: 'center',
+  zIndex: 99,
 }));

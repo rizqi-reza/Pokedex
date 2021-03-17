@@ -9,12 +9,15 @@ import {
   CardBadge,
 } from '@styles/card.styles';
 import { usePalette } from 'react-palette';
-import { pokeballImage } from '@utils/constant';
+import { pokeBall, pokeballImage } from '@utils/constant';
 import { Skeleton } from '@styles/skeleton.styles';
 import { formatText, getFormattedId } from '@utils/string';
+import Image from 'next/image';
+import { countPokemon } from '@utils/localStorage';
 
-const Pokemon: React.FC<IPokemon> = ({ id, name, image, onClick }) => {
+const Pokemon: React.FC<IPokemon> = ({ id, name, nickname, image, onClick }) => {
   const { data: color, loading } = usePalette(image);
+  const catchedPokemon = countPokemon(name);
 
   const handleClickPokemon = () => {
     onClick && onClick(name);
@@ -24,10 +27,22 @@ const Pokemon: React.FC<IPokemon> = ({ id, name, image, onClick }) => {
     <Skeleton marginTop={8} height={100} />
   ) : (
     <Card background={color.lightVibrant} onClick={handleClickPokemon} height={100}>
-      <CardImage src={image} alt={name} />
+      <CardImage>
+        {nickname ? (
+          <CardBadge fontSize={10}>{formatText(name)}</CardBadge>
+        ) : (
+          pokeBall(catchedPokemon > 0, catchedPokemon, 25, 25)
+        )}
+
+        <Image src={image} alt={name} width={96} height={96} />
+      </CardImage>
       <CardHeader>
-        <CardBadge>{formatText(name)}</CardBadge>
-        <CardSubBadge>{getFormattedId(id)}</CardSubBadge>
+        {nickname ? (
+          <CardBadge>{formatText(nickname)}</CardBadge>
+        ) : (
+          <CardBadge>{formatText(name)}</CardBadge>
+        )}
+        {!nickname && <CardSubBadge>{getFormattedId(id)}</CardSubBadge>}
       </CardHeader>
 
       <CardBackground src={pokeballImage} alt="card_background" />

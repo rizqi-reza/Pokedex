@@ -20,15 +20,15 @@ export const CardHeader = styled.div({
   margin: 0,
 });
 
-export const CardBadge = styled.h1({
+export const CardBadge = styled.h1<{ fontSize?: number }>(({ fontSize = 14 }) => ({
   color: '#fff',
-  fontSize: 14,
+  fontSize,
   margin: 0,
   backgroundColor: 'rgba(0, 0, 0, 0.2)',
   padding: '4px 8px',
   borderRadius: 16,
   wordBreak: 'break-word',
-});
+}));
 
 export const CardSubBadge = styled.label({
   color: '#fff',
@@ -45,13 +45,14 @@ export const CardBody = styled.div({
   marginTop: 8,
 });
 
-export const CardImage = styled.img({
+export const CardImage = styled.div({
   position: 'absolute',
-  float: 'right',
-  maxWidth: 96,
-  right: -5,
-  bottom: -5,
-  borderRadius: '50%',
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '100%',
+  top: 35,
+  alignItems: 'center',
+  color: '#fff',
   zIndex: 999,
 });
 
