@@ -24,7 +24,7 @@ export const CardBadge = styled.h1<{ fontSize?: number }>(({ fontSize = 14 }) =>
   color: '#fff',
   fontSize,
   margin: 0,
-  backgroundColor: 'rgba(0, 0, 0, 0.2)',
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
   padding: '4px 8px',
   borderRadius: 16,
   wordBreak: 'break-word',
@@ -35,7 +35,7 @@ export const CardSubBadge = styled.label({
   height: 'fit-content',
   fontSize: 12,
   margin: '0 0 0 8px',
-  backgroundColor: 'rgba(0, 0, 0, 0.2)',
+  backgroundColor: 'rgba(0, 0, 0, 0.4)',
   padding: '4px 8px',
   borderRadius: 16,
 });

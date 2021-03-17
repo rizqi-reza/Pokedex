@@ -5,7 +5,7 @@ import {
   MainContent,
   Footer,
   BackgroundContent,
-} from '@components/layouts/layouts.styles';
+} from '@styles/layouts.styles';
 import { pokeballImage } from '@utils/constant';
 import Image from 'next/image';
 

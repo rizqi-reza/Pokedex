@@ -40,8 +40,8 @@ export const Title = styled.div<ITabs>(({ selected, variant }) => ({
   fontSize: 12,
   padding: variant === 'badge' ? 8 : '16px 4px',
   margin: variant === 'badge' ? '16px 0' : 0,
-  color: selected ? (variant === 'badge' ? '#fff' : '#2196f3') : '#000',
-  backgroundColor: variant === 'badge' && selected ? '#2196f3' : undefined,
+  color: selected ? (variant === 'badge' ? '#fff' : '#1976d2') : '#000',
+  backgroundColor: variant === 'badge' && selected ? '#1976d2' : undefined,
   boxShadow: variant === 'badge' ? '0 4px 16px 0 rgba(0,0,0,0.1)' : undefined,
   cursor: 'pointer',
   borderRadius: variant === 'badge' ? 24 : 0,
@@ -50,13 +50,13 @@ export const Title = styled.div<ITabs>(({ selected, variant }) => ({
     marginRight: 8,
   },
   '&:hover': {
-    color: variant === 'badge' ? '#fff' : '#2196f3',
+    color: variant === 'badge' ? '#fff' : '#1976d2',
   },
 }));
 
 export const Bar = styled.div<ITabs>(({ selected }) => ({
   height: 3,
-  background: selected ? '#2196f3' : undefined,
+  background: selected ? '#1976d2' : undefined,
   position: 'absolute',
   left: 0,
   bottom: 0,
