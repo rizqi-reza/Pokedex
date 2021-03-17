@@ -18,6 +18,7 @@ export const pokeBall = (
 );
 export const pokeImageBaseUrl = process.env.NEXT_PUBLIC_POKE_IMAGE_BASE_URL;
 
+export const defaultPageTitle = 'Pokedéx by Rizqi Reza';
 export const defaultVariables = { limit: 10, offset: 0 };
 export const maxStat = 180;
 export const myPokemonStorage = 'MY_POKEMON_DATA';
