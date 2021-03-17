@@ -3,29 +3,30 @@
     "short_name": "Pokédex",
     "icons": [
         {
-            "src": "./icon-512.png",
+            "src": "https://res.cloudinary.com/rizqireza/image/upload/v1616001937/Pokedex/icon-512_oo6l8p.png",
             "type": "image/png",
             "sizes": "512x512"
         },
         {
-            "src": "./icon-192.png",
+            "src": "https://res.cloudinary.com/rizqireza/image/upload/v1616001937/Pokedex/icon-192_ktgoh5.png",
             "type": "image/png",
             "sizes": "192x192"
         },
         {
-            "src": "./icon-32.png",
+            "src": "https://res.cloudinary.com/rizqireza/image/upload/v1616001937/Pokedex/icon-32_tkzgni.png",
             "type": "image/png",
             "sizes": "32x32"
         },
         {
-            "src": "./icon-16.png",
+            "src": "https://res.cloudinary.com/rizqireza/image/upload/v1616001937/Pokedex/icon-16_xjyuto.png",
             "type": "image/png",
             "sizes": "16x16"
         }
     ],
+    "theme_color": "#000",
     "background_color": "#FFFFFF",
     "description": "Pokédex web application containing list of pokémon, pokémon details including basic information, basic stats, evolution chain, and moves learned. You can caught a pokémon, give it a nickname, and see list of pokémon catched by you on my pokémon tabs, and you can release pokémon also!",
     "display": "fullscreen",
     "start_url": "/",
-    "theme_color": "#000"
+    "orientation": "portrait"
 }
