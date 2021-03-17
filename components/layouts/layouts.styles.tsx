@@ -1,6 +1,4 @@
 import styled from '@emotion/styled';
-import { IContent } from '@interfaces/icontent';
-import { IHeader } from '@interfaces/iheader';
 
 export const LayoutStyle = styled.div(() => ({
   padding: 0,

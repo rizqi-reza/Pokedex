@@ -4,7 +4,6 @@ import { IButton } from '@interfaces/ibutton';
 
 export const ButtonWrapper = styled.button<IButton>(
   () => ({
-    // ...Text.fontBase,
     position: 'relative',
     display: 'inline-flex',
     whiteSpace: 'nowrap',
@@ -27,7 +26,7 @@ export const ButtonWrapper = styled.button<IButton>(
       boxShadow: '0px 1px 4px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px 0px rgba(0, 0, 0, 0.12)',
     },
   }),
-  ({ outline, color, size, disabled, block, flat }) => {
+  ({ size, disabled, block }) => {
     let cssTmp: any = {};
     let WIDTH: number | string | undefined = undefined;
     let FONT_SIZE: number = 14;
@@ -35,105 +34,35 @@ export const ButtonWrapper = styled.button<IButton>(
     let PADDING: number = 16;
     let FONT_WEIGHT: number = 400;
 
-    if (color && outline) {
-      cssTmp = {
-        ...cssTmp,
-        // ...Outline[color],
-      };
-    } else if (color && !outline) {
-      let background;
-      switch (color) {
-        case 'approval':
-          {
-            background = {
-              backgroundColor: '#30a444',
-              color: '#fff',
-              '&:hover': {
-                backgroundColor: '#43bf4d',
-              },
-              '&:active': {
-                backgroundColor: '#21893c',
-              },
-              '&:focus': {
-                backgroundColor: '#30a444',
-                boxShadow:
-                  '0px 0px 0px 3px rgba(135, 204, 176, 0.8),0px 1px 1px 0px rgba(62, 62, 63, 0.2);',
-              },
-              '&:disabled': {
-                color: '#fff',
-                backgroundColor: '#99eb8f',
-              },
-            };
-          }
-          break;
-        case 'danger':
-          {
-            background = {
-              backgroundColor: '#cc292e',
-              color: '#fff',
-              '&:hover': {
-                backgroundColor: '#e06159',
-              },
-              '&:active': {
-                backgroundColor: '#af1d2f',
-              },
-              '&:focus': {
-                backgroundColor: '#cc292e',
-                boxShadow:
-                  '0px 0px 0px 3px rgba(247, 151, 155, 0.8),0px 1px 1px 0px rgba(62, 62, 63, 0.2)',
-              },
-              '&:disabled': {
-                color: '#fff',
-                backgroundColor: '#f9bcaa',
-              },
-            };
-          }
-          break;
-        default:
-          {
-            background = {
-              backgroundColor: '#225db2',
-              color: '#fff',
-              '&:hover': {
-                backgroundColor: '#2f78cf',
-              },
-              '&:active': {
-                backgroundColor: '#174595',
-              },
-              '&:focus': {
-                backgroundColor: '#225db2',
-                boxShadow:
-                  '0px 0px 0px 3px rgba(184, 209, 239, 0.8), 0px 1px 1px 0px rgba(62, 62, 63, 0.2);',
-              },
-              '&:disabled': {
-                color: '#fff',
-                backgroundColor: '#81b7f0',
-              },
-            };
-          }
-          break;
-      }
-      cssTmp = {
-        ...cssTmp,
-        ...background,
-      };
-    }
+    const background = {
+      backgroundColor: '#225db2',
+      color: '#fff',
+      '&:hover': {
+        backgroundColor: '#2f78cf',
+      },
+      '&:active': {
+        backgroundColor: '#174595',
+      },
+      '&:focus': {
+        backgroundColor: '#225db2',
+        boxShadow:
+          '0px 0px 0px 3px rgba(184, 209, 239, 0.8), 0px 1px 1px 0px rgba(62, 62, 63, 0.2);',
+      },
+      '&:disabled': {
+        color: '#fff',
+        backgroundColor: '#81b7f0',
+      },
+    };
+    cssTmp = {
+      ...cssTmp,
+      ...background,
+    };
 
     if (disabled) {
       cssTmp = {
         ...cssTmp,
         cursor: 'not-allowed',
         pointerEvents: 'none',
-      };
-    }
-
-    if (flat) {
-      cssTmp = {
-        ...cssTmp,
-        boxShadow: 'none',
-        '&:hover, &:active, &:focus': {
-          boxShadow: 'none',
-        },
       };
     }
 
@@ -205,15 +134,9 @@ export const Loading = styled.span<IButton>(({ color }) => ({
     backgroundColor: 'transparent',
     opacity: 1,
     borderRadius: '50%',
-    borderTop: `1px solid ${
-      color === 'primary' || color === 'approval' || color === 'danger' ? '#fff' : '#000'
-    }`,
-    borderLeft: `1px solid ${
-      color === 'primary' || color === 'approval' || color === 'danger' ? '#fff' : '#000'
-    }`,
-    borderBottom: `1px solid ${
-      color === 'primary' || color === 'approval' || color === 'danger' ? '#fff' : '#000'
-    }`,
+    borderTop: '1px solid #fff',
+    borderLeft: '1px solid #fff',
+    borderBottom: '1px solid #fff',
     borderRight: '1px solid transparent',
     transition: 'all 0.28s ease',
     transitionDelay: '0.1s',

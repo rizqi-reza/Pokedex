@@ -3,11 +3,8 @@ import { IButton } from '@interfaces/ibutton';
 import { ButtonWrapper, Loading } from '@styles/button.styles';
 
 const Button: React.FC<IButton> = ({
-  color = 'primary',
   type = 'button',
   disabled,
-  outline,
-  flat,
   children,
   block,
   size = 'md',
@@ -17,7 +14,7 @@ const Button: React.FC<IButton> = ({
   const loadingNode = () => {
     if (loading) {
       return (
-        <Loading color={color}>
+        <Loading>
           <span />
         </Loading>
       );
@@ -27,13 +24,10 @@ const Button: React.FC<IButton> = ({
   return (
     <ButtonWrapper
       aria-label="button"
-      color={color}
       type={type}
       disabled={loading ? true : disabled}
-      flat={flat}
       block={block}
       size={size}
-      outline={outline}
       {...props}
     >
       {loading && loadingNode()}
