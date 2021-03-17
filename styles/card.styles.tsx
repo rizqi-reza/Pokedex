@@ -56,9 +56,8 @@ export const CardImage = styled.div({
   zIndex: 999,
 });
 
-export const CardBackground = styled.img({
+export const CardBackground = styled.div({
   position: 'absolute',
-  maxWidth: 115,
   right: -15,
   bottom: -15,
   opacity: 0.2,

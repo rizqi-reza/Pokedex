@@ -45,7 +45,9 @@ const Pokemon: React.FC<IPokemon> = ({ id, name, nickname, image, onClick }) => 
         {!nickname && <CardSubBadge>{getFormattedId(id)}</CardSubBadge>}
       </CardHeader>
 
-      <CardBackground src={pokeballImage} alt="card_background" />
+      <CardBackground>
+        <Image src={pokeballImage} alt="card_background" width={115} height={115} />
+      </CardBackground>
     </Card>
   );
 };
