@@ -1,0 +1,31 @@
+{
+    "name": "Pokédex by Rizqi Reza",
+    "short_name": "Pokédex",
+    "icons": [
+        {
+            "src": "./icon-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "./icon-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "./icon-32.png",
+            "type": "image/png",
+            "sizes": "32x32"
+        },
+        {
+            "src": "./icon-16.png",
+            "type": "image/png",
+            "sizes": "16x16"
+        }
+    ],
+    "background_color": "#FFFFFF",
+    "description": "Pokédex web application containing list of pokémon, pokémon details including basic information, basic stats, evolution chain, and moves learned. You can caught a pokémon, give it a nickname, and see list of pokémon catched by you on my pokémon tabs, and you can release pokémon also!",
+    "display": "fullscreen",
+    "start_url": "/",
+    "theme_color": "#000"
+}

@@ -1,7 +1,7 @@
 const path = require('path');
-const webpack = require('webpack');
+const withPWA = require('next-pwa')
 
-module.exports = {
+module.exports = withPWA({
   // webpack config
   webpack(config, _options) {
     // Fixes npm packages that depend on `fs` module
@@ -20,4 +20,8 @@ module.exports = {
   images: {
     domains: ['raw.githubusercontent.com', 'res.cloudinary.com'],
   },
-};
+  pwa: {
+    dest: 'public',
+    sw: 'service-worker.js',
+  }
+});
