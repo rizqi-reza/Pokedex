@@ -80,7 +80,9 @@ const PokemonList: React.FC<{ owned?: boolean }> = ({ owned }) => {
             <Pokemon {...pokemon} key={index} onClick={handleOpenDetail} />
           ))}
         </Grid>
-        {canLoadMore && !loading && <h3 style={{ textAlign: 'center' }}>Scroll to load more</h3>}
+        {canLoadMore && !loading && (
+          <h2 style={{ textAlign: 'center', fontSize: 16 }}>Scroll to load more</h2>
+        )}
         {loading && <Skeleton marginTop={8}>Loading...</Skeleton>}
         {!loading && owned && !pokeSource && (
           <PokeEmpty>
