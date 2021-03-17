@@ -8,6 +8,7 @@ export interface IModal extends React.HTMLAttributes<HTMLDivElement> {
 export interface IModalWrapper {
   show?: boolean;
   backgroundColor?: string;
+  zIndex?: number;
 }
 
 export interface ISubModal {
@@ -17,7 +18,6 @@ export interface ISubModal {
 
 export interface IModalHeader {
   show?: boolean;
-  variant?: 'light' | 'dark';
 }
 
 export interface IModalBody {

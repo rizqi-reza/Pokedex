@@ -1,5 +1,5 @@
 import { IPokeEvo, IPokeEvoDetail, IPokeSpecies } from '@interfaces/ipokemon';
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_EVOLUTION } from '@utils/graphqlQuery';
 import { Grid } from '@styles/grid.styles';
@@ -30,7 +30,7 @@ const Evolution: React.FC<IPokeSpecies> = ({ evolution_chain }) => {
     return <Image src={imageUrl} alt="poke_evo_image" width={120} height={120} layout="fixed" />;
   };
 
-  const getEvolveTrigger = (pokeEvoDetail: IPokeEvoDetail) => {
+  const getEvolveTrigger = (pokeEvoDetail: IPokeEvoDetail, index: number) => {
     const {
       trigger,
       min_level,
@@ -78,7 +78,7 @@ const Evolution: React.FC<IPokeSpecies> = ({ evolution_chain }) => {
     }
 
     return (
-      <PokeEvoTrigger>
+      <PokeEvoTrigger key={index}>
         <span style={{ fontSize: 32 }}>&rarr;</span>
         <span>{formatText(trigger?.name)}</span>
         <span>({evoAction?.join(', ')})</span>
@@ -86,33 +86,37 @@ const Evolution: React.FC<IPokeSpecies> = ({ evolution_chain }) => {
     );
   };
 
-  const evoList = (pokeEvo: IPokeEvo) => {
+  const getEvolveImage = (pokeEvo: IPokeEvo) => {
+    return (
+      <PokeEvoTrigger>
+        {getPokemonImage(pokeEvo?.species?.url)}
+        <span>{formatText(pokeEvo?.species.name)}</span>
+      </PokeEvoTrigger>
+    );
+  };
+
+  const evoList = (pokeEvo: IPokeEvo, index: number) => {
     if (pokeEvo?.evolves_to.length > 0) {
       return (
-        <>
+        <Fragment key={index}>
           <Grid style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: 20 }}>
-            <PokeEvoTrigger>
-              {getPokemonImage(pokeEvo?.species?.url)}
-              <span>{formatText(pokeEvo?.species.name)}</span>
-            </PokeEvoTrigger>
+            {getEvolveImage(pokeEvo)}
             <div>
-              {pokeEvo?.evolves_to?.map((evo: IPokeEvo) => (
-                <Grid>
+              {pokeEvo?.evolves_to?.map((evo: IPokeEvo, index: number) => (
+                <Grid key={index}>
                   <div>
-                    {evo?.evolution_details?.map((evoDetails: IPokeEvoDetail) =>
-                      getEvolveTrigger(evoDetails),
+                    {evo?.evolution_details?.map(
+                      (evoDetails: IPokeEvoDetail, indexDetail: number) =>
+                        getEvolveTrigger(evoDetails, indexDetail),
                     )}
                   </div>
-                  <PokeEvoTrigger>
-                    {getPokemonImage(evo?.species?.url)}
-                    <span>{formatText(evo.species.name)}</span>
-                  </PokeEvoTrigger>
+                  {getEvolveImage(evo)}
                 </Grid>
               ))}
             </div>
           </Grid>
-          {pokeEvo?.evolves_to?.map((evo) => evoList(evo))}
-        </>
+          {pokeEvo?.evolves_to?.map((evo) => evoList(evo, index + 1))}
+        </Fragment>
       );
     }
   };
@@ -127,7 +131,7 @@ const Evolution: React.FC<IPokeSpecies> = ({ evolution_chain }) => {
       ) : notEvolve ? (
         <p>This pokemon does not evolve.</p>
       ) : (
-        evoList(pokemonEvo)
+        evoList(pokemonEvo, 0)
       )}
     </>
   );

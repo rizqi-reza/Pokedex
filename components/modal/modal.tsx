@@ -57,10 +57,10 @@ const Modal: React.FC<IModal> & ISubModal = ({
 
   return (
     <>
-      <Mask show={show} />
+      <Mask show={show} backgroundColor="rgba(0,0,0,0.5)" zIndex={99999999} />
       <ModalWrapper show={show}>
-        <ModalStyled show={show} ref={node} {...props}>
-          <ModalHeader show={show} variant="dark">
+        <ModalStyled show={show} {...props}>
+          <ModalHeader>
             <ModalTitle>{title}</ModalTitle>
             <ModalClose onClick={handleClose}>&times;</ModalClose>
           </ModalHeader>

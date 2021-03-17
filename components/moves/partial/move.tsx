@@ -64,8 +64,8 @@ const Move: React.FC<IMove> = ({ moveName, openedMove, onClick }) => {
 
       <MoveDetails show={showDetail}>
         <span>{description}</span>
-        {effect_entries?.map((effect) => (
-          <span>{getMoveEffects(effect.effect, effect_chance)}</span>
+        {effect_entries?.map((effect, index: number) => (
+          <span key={index}>{getMoveEffects(effect.effect, effect_chance)}</span>
         ))}
         <Grid template={['auto', 'auto']}>
           <span>Category</span>

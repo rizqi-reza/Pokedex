@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { IModalBody, IModalHeader, IModalWrapper } from '@interfaces/imodal';
 
-export const Mask = styled.div<IModalWrapper>(({ show, backgroundColor }) => ({
+export const Mask = styled.div<IModalWrapper>(({ show, backgroundColor, zIndex }) => ({
   position: 'fixed',
   top: 0,
   left: 0,
@@ -14,7 +14,7 @@ export const Mask = styled.div<IModalWrapper>(({ show, backgroundColor }) => ({
     : 'rgba(255,255,255,0.5)',
   visibility: show ? 'visible' : 'hidden',
   transition: 'all 0.3s',
-  zIndex: 999,
+  zIndex: zIndex ? zIndex : 999,
   div: {
     opacity: 0.2,
     float: 'right',
@@ -30,9 +30,9 @@ export const ModalWrapper = styled.div<IModalWrapper>(({ show }) => ({
   right: 0,
   bottom: 0,
   left: 0,
-  zIndex: 9999,
+  zIndex: 99999999,
   outline: 0,
-  overflow: undefined,
+  overflow: 'auto',
   opacity: show ? 1 : 0,
   visibility: show ? 'visible' : 'hidden',
   transform: show ? 'translate(0)' : 'translateY(100%)',
@@ -49,36 +49,32 @@ export const ModalWrapper = styled.div<IModalWrapper>(({ show }) => ({
 
 export const ModalStyled = styled.div<IModalWrapper>(({ show }) => ({
   width: '100%',
-  maxWidth: 480,
-  height: 480,
+  maxWidth: 300,
   position: 'relative',
-  margin: '32px auto 0',
+  margin: '32px auto',
   background: '#fff',
   flex: 1,
+  top: 0,
   display: 'inline-block',
   textAlign: 'left',
-  verticalAlign: 'bottom',
+  verticalAlign: 'middle',
   opacity: show ? 1 : 0,
-  borderTopLeftRadius: 28,
-  borderTopRightRadius: 28,
+  borderRadius: 8,
   boxShadow: '0 -2px 16px 0 rgba(0,0,0,0.1)',
   transition: 'transform 200ms ease-in-out 0s, opacity 200ms ease-in-out 0s',
 }));
 
-export const ModalHeader = styled.div<IModalHeader>(({ show, variant }) => ({
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  right: 0,
+export const ModalHeader = styled.div({
+  display: 'flex',
+  justifyContent: 'space-between',
   alignItems: 'center',
-  padding: 24,
-  maxWidth: 480,
-  margin: '0 auto 0',
-  color: variant === 'light' ? '#fff' : '#000',
-  visibility: show ? 'visible' : 'hidden',
-  transition: 'all 0.3s',
-  zIndex: 99999,
-}));
+  padding: 16,
+  paddingBottom: 0,
+  borderBottom: `1px solid #e0e0e0`,
+  borderTopLeftRadius: 8,
+  borderTopRightRadius: 8,
+  zIndex: 9,
+});
 
 export const ModalTitle = styled.div({
   margin: 0,
@@ -86,23 +82,14 @@ export const ModalTitle = styled.div({
   justifyContent: 'space-between',
 });
 
-export const ModalInfo = styled.div({
-  color: '#fff',
-});
-
 export const ModalClose = styled.div({
   cursor: 'pointer',
   fontSize: 24,
-  fontWeight: 800,
-  padding: '0 10px 4px',
-  backgroundColor: 'rgba(0, 0, 0, 0.2)',
-  textShadow: 'none',
-  borderRadius: '50%',
+  marginTop: -8,
 });
 
 export const Body = styled.div<IModalBody>(({ withOutFooter, maxHeight, fullHeight }) => ({
-  padding: 12,
-  paddingTop: 24,
+  padding: 16,
   fontSize: 14,
   wordBreak: 'break-word',
   maxHeight:
@@ -115,25 +102,19 @@ export const Body = styled.div<IModalBody>(({ withOutFooter, maxHeight, fullHeig
 }));
 
 export const Footer = styled.div({
-  backgroundColor: '#fff',
-  maxWidth: 480,
-  margin: '0 auto 0',
-  borderTop: `1px solid #e0e0e0`,
-  position: 'fixed',
-  bottom: 0,
-  left: 0,
-  right: 0,
   padding: 16,
   display: 'flex',
-  justifyContent: 'space-around',
-});
-
-export const ModalHeaderImage = styled.div({
-  display: 'block',
-  position: 'absolute',
-  left: 0,
-  right: 0,
-  textAlign: 'center',
-  top: '-34%',
-  objectFit: 'cover',
+  justifyContent: 'flex-end',
+  alignItems: 'center',
+  borderRadius: 8,
+  flex: '0 0 calc(50% - 4px)',
+  '&:only-of-type': {
+    flex: '0 0 100%',
+    maxWidth: '100%',
+  },
+  button: {
+    '& + button': {
+      marginLeft: 8,
+    },
+  },
 });

@@ -1,5 +1,12 @@
+import { keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 import { IPokeBall, IPokeAction } from '@interfaces/ipokemon';
+
+const spin = keyframes`
+  100% {
+    transform: rotate(360deg);
+  }
+`;
 
 export const PokeBall = styled.span<IPokeBall>(({ background, width, height, isActive }) => ({
   display: 'inline-block',
@@ -84,7 +91,7 @@ export const PokeEvoTrigger = styled.div({
   },
 });
 
-export const PokeAction = styled.button<IPokeAction>(({ variant }) => ({
+export const PokeAction = styled.button<IPokeAction>(({ variant, isLoading }) => ({
   position: 'fixed',
   color: '#fff',
   backgroundColor: variant === 'default' ? '#2196f3' : variant === 'catch' ? '#ef5350' : '#9ccc65',
@@ -103,9 +110,10 @@ export const PokeAction = styled.button<IPokeAction>(({ variant }) => ({
   boxSizing: 'border-box',
   boxShadow: '0 4px 16px 0 rgba(0,0,0,0.3)',
   border: 'none',
+  animation: isLoading ? `${spin} 1.4s ease infinite` : undefined,
   transition: 'all .3s cubic-bezier(0.645, 0.045, 0.355, 1)',
+  zIndex: 9,
   ':hover': {
     boxShadow: 'none',
   },
-  zIndex: 9,
 }));

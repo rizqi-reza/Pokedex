@@ -127,4 +127,5 @@ export interface IPokeBall {
 
 export interface IPokeAction {
   variant?: 'default' | 'catch' | 'release';
+  isLoading?: boolean;
 }
