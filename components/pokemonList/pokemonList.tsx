@@ -21,6 +21,7 @@ const PokemonList: React.FC<{ owned?: boolean }> = ({ owned }) => {
 
   const pokeSource = owned ? myPokemons : pokedex;
   const canLoadMore = Boolean(nextOffset <= totalData && !owned);
+  const isMyPokemonEmpty = owned && (!myPokemons || myPokemons?.length <= 0);
 
   const { loading } = useQuery(GET_POKEMON_LIST, {
     skip: owned,
@@ -36,10 +37,14 @@ const PokemonList: React.FC<{ owned?: boolean }> = ({ owned }) => {
     onError: (error) => alert(error),
   });
 
+  const setMyPokemon = () => {
+    const pokeData = getMyPokemon();
+    setMyPokemons(pokeData);
+  };
+
   useEffect(() => {
     if (owned) {
-      const pokeData = getMyPokemon();
-      setMyPokemons(pokeData);
+      setMyPokemon();
     }
   }, [owned]);
 
@@ -84,10 +89,10 @@ const PokemonList: React.FC<{ owned?: boolean }> = ({ owned }) => {
           <h2 style={{ textAlign: 'center', fontSize: 16 }}>Scroll to load more</h2>
         )}
         {loading && <Skeleton marginTop={8}>Loading...</Skeleton>}
-        {!loading && owned && !pokeSource && (
+        {isMyPokemonEmpty && (
           <PokeEmpty>
             &#128546;
-            <h5>You don't catch any pokémon</h5>
+            <h5>You don't have any pokémon</h5>
           </PokeEmpty>
         )}
       </PokeWrapper>
@@ -96,6 +101,7 @@ const PokemonList: React.FC<{ owned?: boolean }> = ({ owned }) => {
         pokemon={selectedPokemon}
         showDetail={Boolean(selectedPokemon)}
         onClose={handleCloseDetail}
+        onRelease={setMyPokemon}
       />
     </>
   );

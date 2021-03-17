@@ -19,18 +19,29 @@ export const getMyPokemon = () => {
 };
 
 export const saveMyPokemon = (pokemon: IPokemon, nickname: string) => {
-  const myPokemon = getMyPokemon();
-  const pokemonData = { ...pokemon, nickname };
+  const myPokemon: IPokemon[] = getMyPokemon();
+  const pokemonData = { ...pokemon, nickname: nickname.toLowerCase() };
   const newPokeData = myPokemon
     ? JSON.stringify([...myPokemon, pokemonData])
     : JSON.stringify([pokemonData]);
   localStorage?.setItem(myPokemonStorage, newPokeData);
 };
 
+export const releaseMyPokemon = (nickname: string) => {
+  const myPokemon: IPokemon[] = getMyPokemon();
+  const pokemonData = myPokemon?.filter(
+    (pokemon: IPokemon) => pokemon.nickname.toLowerCase() !== nickname.toLowerCase(),
+  );
+  const newPokeData = JSON.stringify(pokemonData || []);
+  localStorage?.setItem(myPokemonStorage, newPokeData);
+};
+
 export const validatePokemonName = (nickname: string) => {
-  const pokeData = getMyPokemon();
-  if (pokeData) {
-    const isExists = pokeData?.find((pokemon: IPokemon) => pokemon.nickname === nickname);
+  const myPokemon: IPokemon[] = getMyPokemon();
+  if (myPokemon) {
+    const isExists = myPokemon?.find(
+      (pokemon: IPokemon) => pokemon.nickname?.toLowerCase() === nickname?.toLowerCase(),
+    );
     return !isExists;
   } else {
     return true;

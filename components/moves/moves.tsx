@@ -1,4 +1,4 @@
-import { IPokeBase, IPokeMove } from '@interfaces/ipokemon';
+import { IPokeBase } from '@interfaces/ipokemon';
 import React, { useState } from 'react';
 import Move from '@components/moves/partial/move';
 import { Grid } from '@styles/grid.styles';

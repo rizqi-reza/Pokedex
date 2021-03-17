@@ -3,8 +3,14 @@ import styled from '@emotion/styled';
 import { IPokeBall, IPokeAction } from '@interfaces/ipokemon';
 
 const spin = keyframes`
+  from {
+    transform: translateY(0%) rotate(-360deg);
+  }
+  50% {
+    transform: translateY(-50%);
+  }
   100% {
-    transform: rotate(360deg);
+    transform: translateY(0%) rotate(360deg);
   }
 `;
 
@@ -141,7 +147,7 @@ export const PokeAction = styled.button<IPokeAction>(({ variant, isLoading }) =>
 
 export const PokeEmpty = styled.div({
   textAlign: 'center',
-  fontSize: 24,
+  fontSize: 18,
   backgroundColor: 'rgba(0, 0, 0, 0.2)',
   borderRadius: 8,
   padding: 8,

@@ -27,6 +27,7 @@ export interface IPokemonDetail {
   pokemon: IPokemon;
   showDetail: boolean;
   onClose: () => void;
+  onRelease: () => void;
 }
 
 export interface IPokeType {

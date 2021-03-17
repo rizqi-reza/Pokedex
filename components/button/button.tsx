@@ -1,8 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { IButton } from '@interfaces/ibutton';
 import { ButtonWrapper, Loading } from '@styles/button.styles';
 
 const Button: React.FC<IButton> = ({
+  color = 'primary',
   type = 'button',
   disabled,
   children,
@@ -24,6 +25,7 @@ const Button: React.FC<IButton> = ({
   return (
     <ButtonWrapper
       aria-label="button"
+      color={color}
       type={type}
       disabled={loading ? true : disabled}
       block={block}

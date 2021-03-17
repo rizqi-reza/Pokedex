@@ -26,7 +26,7 @@ export const ButtonWrapper = styled.button<IButton>(
       boxShadow: '0px 1px 4px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px 0px rgba(0, 0, 0, 0.12)',
     },
   }),
-  ({ size, disabled, block }) => {
+  ({ color, size, disabled, block }) => {
     let cssTmp: any = {};
     let WIDTH: number | string | undefined = undefined;
     let FONT_SIZE: number = 14;
@@ -34,25 +34,49 @@ export const ButtonWrapper = styled.button<IButton>(
     let PADDING: number = 16;
     let FONT_WEIGHT: number = 400;
 
-    const background = {
-      backgroundColor: '#225db2',
-      color: '#fff',
-      '&:hover': {
-        backgroundColor: '#2f78cf',
-      },
-      '&:active': {
-        backgroundColor: '#174595',
-      },
-      '&:focus': {
+    let background;
+    if (color === 'primary') {
+      background = {
         backgroundColor: '#225db2',
-        boxShadow:
-          '0px 0px 0px 3px rgba(184, 209, 239, 0.8), 0px 1px 1px 0px rgba(62, 62, 63, 0.2);',
-      },
-      '&:disabled': {
         color: '#fff',
-        backgroundColor: '#81b7f0',
-      },
-    };
+        '&:hover': {
+          backgroundColor: '#2f78cf',
+        },
+        '&:active': {
+          backgroundColor: '#174595',
+        },
+        '&:focus': {
+          backgroundColor: '#225db2',
+          boxShadow:
+            '0px 0px 0px 3px rgba(184, 209, 239, 0.8), 0px 1px 1px 0px rgba(62, 62, 63, 0.2);',
+        },
+        '&:disabled': {
+          color: '#fff',
+          backgroundColor: '#81b7f0',
+        },
+      };
+    } else {
+      background = {
+        backgroundColor: '#cc292e',
+        color: '#fff',
+        '&:hover': {
+          backgroundColor: '#e06159',
+        },
+        '&:active': {
+          backgroundColor: '#af1d2f',
+        },
+        '&:focus': {
+          backgroundColor: '#cc292e',
+          boxShadow:
+            '0px 0px 0px 3px rgba(247, 151, 155, 0.8),0px 1px 1px 0px rgba(62, 62, 63, 0.2)',
+        },
+        '&:disabled': {
+          color: '#fff',
+          backgroundColor: '#f9bcaa',
+        },
+      };
+    }
+
     cssTmp = {
       ...cssTmp,
       ...background,
@@ -122,7 +146,7 @@ export const loaderRippleKeyframe = keyframes({
   },
 });
 
-export const Loading = styled.span<IButton>(({ color }) => ({
+export const Loading = styled.span({
   position: 'relative',
   width: 22,
   span: {
@@ -145,4 +169,4 @@ export const Loading = styled.span<IButton>(({ color }) => ({
     animationIterationCount: 'infinite',
     animationTimingFunction: 'linear',
   },
-}));
+});
