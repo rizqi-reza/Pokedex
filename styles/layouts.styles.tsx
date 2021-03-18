@@ -37,7 +37,6 @@ export const Footer = styled.div({
   left: 0,
   bottom: 0,
   width: '100%',
-  marginLeft: -8,
   color: '#757575',
   backgroundColor: '#fff',
   padding: '1.5em 0',
