@@ -1,17 +1,12 @@
 import styled from '@emotion/styled';
-
-interface ITabs {
-  selected?: boolean;
-  variant?: 'default' | 'badge';
-  fixedHeader?: boolean;
-}
+import { ITabsStyle } from '@interfaces/itabs';
 
 export const TabsStyled = styled.div({
   position: 'relative',
   height: '100%',
 });
 
-export const TabsList = styled.div<ITabs>(({ variant, fixedHeader }) => ({
+export const TabsList = styled.div<ITabsStyle>(({ variant, fixedHeader }) => ({
   position: fixedHeader ? 'fixed' : 'relative',
   top: fixedHeader ? 0 : undefined,
   left: fixedHeader ? 0 : undefined,
@@ -29,12 +24,12 @@ export const TabsList = styled.div<ITabs>(({ variant, fixedHeader }) => ({
   },
 }));
 
-export const TitleWrapper = styled.div({
+export const TabsTitleWrapper = styled.div({
   marginRight: 8,
   position: 'relative',
 });
 
-export const Title = styled.div<ITabs>(({ selected, variant }) => ({
+export const TabsTitle = styled.div<ITabsStyle>(({ selected, variant }) => ({
   fontWeight: 600,
   textTransform: 'uppercase',
   fontSize: 12,
@@ -54,7 +49,7 @@ export const Title = styled.div<ITabs>(({ selected, variant }) => ({
   },
 }));
 
-export const Bar = styled.div<ITabs>(({ selected }) => ({
+export const TabsBar = styled.div<ITabsStyle>(({ selected }) => ({
   height: 3,
   background: selected ? '#1976d2' : undefined,
   position: 'absolute',
@@ -65,15 +60,12 @@ export const Bar = styled.div<ITabs>(({ selected }) => ({
   borderTopRightRadius: 4,
 }));
 
-export const Content = styled.div<{ withBorder: boolean; maxHeight: string; noPadding: boolean }>(
-  ({ withBorder, maxHeight, noPadding }) => ({
-    padding: noPadding ? 0 : '0 16px',
-    borderTop: withBorder ? `1px solid #e0e0e0` : 'none',
-    fontSize: 14,
-    overflowY: 'scroll',
-    maxHeight,
-  }),
-);
+export const TabsContent = styled.div<ITabsStyle>(({ withBorder, noPadding }) => ({
+  padding: noPadding ? 0 : '0 16px',
+  borderTop: withBorder ? `1px solid #e0e0e0` : 'none',
+  fontSize: 14,
+  overflowY: 'scroll',
+}));
 
 export const TabsItemStyled = styled.div({
   position: 'relative',

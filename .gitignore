@@ -33,6 +33,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Testing
+*.snap
+
 # next-pwa
 **/public/workbox-*.js
 **/public/service-worker.js

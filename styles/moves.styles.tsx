@@ -1,24 +1,18 @@
 import styled from '@emotion/styled';
+import { IMoveStyle } from '@interfaces/imove';
 
-interface IMoveType {
-  backgroundColor?: string;
-  color?: string;
-  align?: 'left' | 'center' | 'right';
-  show?: boolean;
-}
-
-export const MoveHeader = styled.span<IMoveType>(({ align }) => ({
+export const MoveHeader = styled.span<IMoveStyle>(({ align }) => ({
   fontSize: 16,
   fontWeight: 'bold',
   textAlign: align,
 }));
 
-export const MoveItem = styled.span<IMoveType>(({ align }) => ({
+export const MoveItem = styled.span<IMoveStyle>(({ align }) => ({
   fontSize: 14,
   textAlign: align,
 }));
 
-export const MoveType = styled.span<IMoveType>(
+export const MoveType = styled.span<IMoveStyle>(
   ({ backgroundColor = 'white', color = 'black', align = 'center' }) => ({
     fontSize: 14,
     backgroundColor,
@@ -32,7 +26,7 @@ export const MoveType = styled.span<IMoveType>(
   }),
 );
 
-export const MoveDetails = styled.div<IMoveType>(({ show }) => ({
+export const MoveDetails = styled.div<IMoveStyle>(({ show }) => ({
   fontSize: 14,
   display: show ? 'grid' : 'none',
   gridColumn: '1 / span 5',

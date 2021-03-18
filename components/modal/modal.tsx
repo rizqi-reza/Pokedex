@@ -23,15 +23,7 @@ const ModalFooter: React.FC = ({ children }) => {
   return <Footer>{children}</Footer>;
 };
 
-const Modal: React.FC<IModal> & ISubModal = ({
-  show,
-  title,
-  info,
-  color,
-  children,
-  onClose,
-  ...props
-}) => {
+const Modal: React.FC<IModal> & ISubModal = ({ show, title, children, onClose, ...props }) => {
   const node = useRef<HTMLDivElement>(null);
 
   const handleClick = (e: any) => {

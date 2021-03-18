@@ -1,9 +1,5 @@
 import styled from '@emotion/styled';
-
-interface IGrid {
-  template?: string | string[];
-  rowGap?: number;
-}
+import { IGrid } from '@interfaces/igrid';
 
 export const Grid = styled.div<IGrid>(({ template = ['auto', 'auto'], rowGap = 12 }) => ({
   display: 'grid',

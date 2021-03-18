@@ -7,12 +7,7 @@ import { IPokeMove } from '@interfaces/ipokemon';
 import { Skeleton } from '@styles/skeleton.styles';
 import { MoveDetails, MoveItem, MoveType } from '@styles/moves.styles';
 import { Grid } from '@styles/grid.styles';
-
-interface IMove {
-  moveName: string;
-  openedMove: number;
-  onClick: (id: number) => void;
-}
+import { IMove } from '@interfaces/imove';
 
 const Move: React.FC<IMove> = ({ moveName, openedMove, onClick }) => {
   const [pokemonMove, setPokemonMove] = useState<IPokeMove>();

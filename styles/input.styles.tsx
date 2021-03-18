@@ -1,22 +1,21 @@
-import { keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 import { IInputWrapper } from '@interfaces/iinput';
 
 export const InputWrapper = styled.div<IInputWrapper>(
-  ({ size = 'md', invalid = false, disabled = false, isLoading = false }) => {
+  ({ size = 'md', invalid = false, disabled = false }) => {
     let cssTmp: any = {};
     let HEIGHT: number = 32;
     let FONT_SIZE: number = 14;
-    let PADDING: string = isLoading ? '4px 38px 4px 8px' : '4px 8px';
+    let PADDING: string = '4px 8px';
     switch (size) {
       case 'sm':
         HEIGHT = 24;
-        PADDING = isLoading ? '2px 34px 2px 6px' : '2px 6px';
+        PADDING = '2px 6px';
         FONT_SIZE = 12;
         break;
       case 'lg':
         HEIGHT = 40;
-        PADDING = isLoading ? '4px 50px 4px 14px' : '4px 14px';
+        PADDING = '4px 14px';
         FONT_SIZE = 16;
         break;
       default:
@@ -65,34 +64,4 @@ export const InputWrapper = styled.div<IInputWrapper>(
 export const InputMessage = styled.span<IInputWrapper>(({ invalid = false }) => ({
   fontSize: 12,
   color: invalid ? '#cc292e' : '#000',
-}));
-
-export const loaderRippleKeyframe = keyframes({
-  from: {
-    transform: 'translateY(-50%) rotate(0deg)',
-  },
-  to: {
-    transform: 'translateY(-50%) rotate(360deg)',
-  },
-});
-
-export const Loading = styled.span<IInputWrapper>(({ size }) => ({
-  position: 'absolute',
-  height: size === 'lg' ? 18 : 14,
-  width: size === 'lg' ? 18 : 14,
-  top: '50%',
-  right: size === 'sm' ? 6 : size === 'lg' ? 14 : 8,
-  backgroundColor: 'transparent',
-  opacity: 1,
-  borderRadius: '50%',
-  borderTop: '2px solid #225db2',
-  borderLeft: '2px solid #225db2',
-  borderBottom: '2px solid #225db2',
-  borderRight: '2px solid transparent',
-  transition: 'all 0.28s ease',
-  transitionDelay: '0.1s',
-  animationName: loaderRippleKeyframe,
-  animationDuration: '0.75s',
-  animationIterationCount: 'infinite',
-  animationTimingFunction: 'linear',
 }));

@@ -9,7 +9,7 @@ import {
 describe('countPokemon()', () => {
   it(`Returns pokemon quantity by name and calls getItem in localStorage once`, () => {
     const TEST = 'charizard';
-    const RESULT = null;
+    const RESULT = 0;
     const spy = jest.spyOn(Storage.prototype, 'getItem');
 
     expect(countPokemon(TEST)).toBe(RESULT);
@@ -58,7 +58,7 @@ describe('releaseMyPokemon()', () => {
 describe('validatePokemonName()', () => {
   it(`Returns is valid nickname values and calls getItem in localStorage once`, () => {
     const TEST_NICKNAME = 'kodok';
-    const RESULT = false;
+    const RESULT = true;
     const spy = jest.spyOn(Storage.prototype, 'getItem');
 
     expect(validatePokemonName(TEST_NICKNAME)).toBe(RESULT);

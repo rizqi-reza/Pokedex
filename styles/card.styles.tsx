@@ -20,7 +20,7 @@ export const CardHeader = styled.div({
   margin: 0,
 });
 
-export const CardBadge = styled.h1<{ fontSize?: number }>(({ fontSize = 14 }) => ({
+export const CardBadge = styled.h1<ICard>(({ fontSize = 14 }) => ({
   color: '#fff',
   fontSize,
   margin: 0,

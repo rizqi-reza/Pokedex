@@ -4,8 +4,9 @@ import { maxStat } from '@utils/constant';
 import ProgressBar from '@components/progressBar';
 import { Grid } from '@styles/grid.styles';
 import { formatText } from '@utils/string';
+import { IStats } from '@interfaces/istats';
 
-const Stats: React.FC<{ stats: IPokeStat[] }> = ({ stats }) => {
+const Stats: React.FC<IStats> = ({ stats }) => {
   return (
     <>
       <h3>Basic Stats</h3>

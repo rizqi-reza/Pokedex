@@ -158,7 +158,6 @@ const PokemonDetails: React.FC<IPokemonDetail> = ({ pokemon, showDetail, onClose
             onChange={handleChangeNickname}
             maxLength={20}
             value={pokeNickname}
-            loading={loadingAction}
             disabled={loadingAction}
             invalid={!isValid}
             message={errorMessage}

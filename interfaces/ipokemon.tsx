@@ -71,21 +71,21 @@ export interface IPokeSprites {
 }
 
 export interface IPokeSpecies {
-  id: number;
-  base_happiness: number;
-  capture_rate: number;
-  color: IPokeBase;
-  egg_groups: IPokeBase[];
-  evolution_chain: IPokeBase;
-  flavor_text_entries: IPokeFlavorTextEntries[];
-  genera: IPokeGenera[];
-  growth_rate: IPokeBase;
-  shape: IPokeBase;
-  habitat: IPokeBase;
-  hatch_counter: number;
-  is_baby: boolean;
-  is_legendary: boolean;
-  is_mythical: boolean;
+  id?: number;
+  base_happiness?: number;
+  capture_rate?: number;
+  color?: IPokeBase;
+  egg_groups?: IPokeBase[];
+  evolution_chain?: IPokeBase;
+  flavor_text_entries?: IPokeFlavorTextEntries[];
+  genera?: IPokeGenera[];
+  growth_rate?: IPokeBase;
+  shape?: IPokeBase;
+  habitat?: IPokeBase;
+  hatch_counter?: number;
+  is_baby?: boolean;
+  is_legendary?: boolean;
+  is_mythical?: boolean;
 }
 
 export interface IPokeGenera {
@@ -124,6 +124,10 @@ export interface IPokeBall {
   width?: number;
   height?: number;
   isActive: boolean;
+}
+
+export interface IPokeImage {
+  show?: boolean;
 }
 
 export interface IPokeAction {

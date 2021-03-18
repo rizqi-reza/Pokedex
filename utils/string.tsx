@@ -1,6 +1,6 @@
 import { IPokeFlavorTextEntries } from '@interfaces/ipokemon';
 import { startCase, lowerCase } from 'lodash';
-import { pokemonVersion } from './constant';
+import { language, pokemonVersion } from './constant';
 
 export const getFormattedId = (id: number) => {
   return id ? `#${id.toString().padStart(3, '0')}` : '';
@@ -16,12 +16,16 @@ export const parseUrlParam = (url: string) => {
   return params;
 };
 
-export const getDescription = (flavor_text_entries: IPokeFlavorTextEntries[]) =>
-  flavor_text_entries?.find(
-    (text) =>
-      text?.version?.name.includes(pokemonVersion) ||
-      text?.version_group?.name.includes(pokemonVersion),
-  )?.flavor_text || '';
+export const getDescription = (flavor_text_entries: IPokeFlavorTextEntries[]) => {
+  return (
+    flavor_text_entries?.find(
+      (text) =>
+        (text?.version?.name.includes(pokemonVersion) ||
+          text?.version_group?.name.includes(pokemonVersion)) &&
+        text?.language.name === language,
+    )?.flavor_text || ''
+  );
+};
 
 export const getMoveTypeColor = (move: string) => {
   switch (move) {

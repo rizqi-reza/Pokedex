@@ -1,6 +1,6 @@
 import React from 'react';
 import { IInput } from '@interfaces/iinput';
-import { InputMessage, InputWrapper, Loading } from '@styles/input.styles';
+import { InputMessage, InputWrapper } from '@styles/input.styles';
 
 const Input: React.FC<IInput> = ({
   size,
@@ -9,7 +9,6 @@ const Input: React.FC<IInput> = ({
   invalid,
   message,
   disabled,
-  loading = false,
   ...props
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,10 +24,9 @@ const Input: React.FC<IInput> = ({
   };
 
   return (
-    <InputWrapper size={size} invalid={invalid} disabled={disabled} isLoading={loading} {...props}>
+    <InputWrapper size={size} invalid={invalid} disabled={disabled} {...props}>
       {inputNode()}
       {invalid && message && <InputMessage>{message}</InputMessage>}
-      {loading && <Loading size={size} />}
     </InputWrapper>
   );
 };

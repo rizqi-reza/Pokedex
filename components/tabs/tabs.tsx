@@ -3,10 +3,10 @@ import {
   TabsItemStyled,
   TabsStyled,
   TabsList,
-  TitleWrapper,
-  Title,
-  Bar,
-  Content,
+  TabsTitleWrapper,
+  TabsTitle,
+  TabsBar,
+  TabsContent,
 } from '@styles/tabs.styles';
 import React, { useState } from 'react';
 
@@ -17,7 +17,6 @@ const TabsItem: React.FC = ({ children }) => {
 const Tabs: React.FC<ITabs> & ISubTabs = ({
   defaultActive = 0,
   withBorder,
-  maxHeight,
   fixedHeader,
   noPadding,
   variant,
@@ -45,18 +44,18 @@ const Tabs: React.FC<ITabs> & ISubTabs = ({
       <TabsList fixedHeader={fixedHeader} variant={variant}>
         {React.Children.map(children, (item: any, index) => {
           return (
-            <TitleWrapper key={index} onClick={() => handleChange(index)}>
-              <Title selected={index == selectedStatus} variant={variant}>
+            <TabsTitleWrapper key={index} onClick={() => handleChange(index)}>
+              <TabsTitle selected={index == selectedStatus} variant={variant}>
                 {item.props.title}
-              </Title>
-              {variant === 'default' && <Bar selected={index == selectedStatus} />}
-            </TitleWrapper>
+              </TabsTitle>
+              {variant === 'default' && <TabsBar selected={index == selectedStatus} />}
+            </TabsTitleWrapper>
           );
         })}
       </TabsList>
-      <Content withBorder={withBorder} maxHeight={maxHeight} noPadding={noPadding}>
+      <TabsContent withBorder={withBorder} noPadding={noPadding}>
         {contentRender()}
-      </Content>
+      </TabsContent>
     </TabsStyled>
   );
 };

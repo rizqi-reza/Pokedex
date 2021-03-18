@@ -1,6 +1,6 @@
 import { keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
-import { IPokeBall, IPokeAction } from '@interfaces/ipokemon';
+import { IPokeBall, IPokeAction, IPokeImage } from '@interfaces/ipokemon';
 
 const spin = keyframes`
   from {
@@ -64,7 +64,7 @@ export const PokeInfo = styled.div({
   height: '100%',
 });
 
-export const PokeImage = styled.div<{ show?: boolean }>(({ show = true }) => ({
+export const PokeImage = styled.div<IPokeImage>(({ show = true }) => ({
   display: 'block',
   position: 'absolute',
   left: 0,

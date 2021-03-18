@@ -1,16 +1,16 @@
 import styled from '@emotion/styled';
 
-export const LayoutStyle = styled.div(() => ({
+export const LayoutStyle = styled.div({
   padding: 0,
   margin: 0,
   fontFamily: 'Open Sans,sans-serif',
   backgroundColor: '#f7f7f7',
-}));
+});
 
-export const Wrapper = styled.div(() => ({
+export const Wrapper = styled.div({
   maxWidth: 480,
   margin: '0px auto',
-}));
+});
 
 export const MainContent = styled.main({
   color: '#000',
@@ -32,7 +32,7 @@ export const BackgroundContent = styled.div({
   transform: 'rotate(-10deg)',
 });
 
-export const Footer = styled.div(() => ({
+export const Footer = styled.div({
   position: 'fixed',
   left: 0,
   bottom: 0,
@@ -44,4 +44,4 @@ export const Footer = styled.div(() => ({
   fontSize: 12,
   textAlign: 'center',
   zIndex: 99,
-}));
+});
