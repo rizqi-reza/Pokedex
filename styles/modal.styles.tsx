@@ -16,6 +16,8 @@ export const Mask = styled.div<IModalWrapper>(({ show, backgroundColor, zIndex }
   transition: 'all 0.3s',
   zIndex: zIndex ? zIndex : 999,
   div: {
+    visibility: show ? 'visible' : 'hidden',
+    transition: 'all 0.1s',
     opacity: 0.2,
     float: 'right',
     transform: 'rotate(-10deg)',
